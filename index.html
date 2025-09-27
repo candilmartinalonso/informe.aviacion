@@ -16,7 +16,7 @@
     .era-title { font-family: 'Oswald', sans-serif; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
     .lesson-card { background-color: #2c3847; border-left: 4px solid #f59e0b; transition: all 0.3s ease; cursor: pointer; }
     .lesson-card:hover { background-color: #3e4b5a; }
-    .chart-container { position: relative; width: 100%; max-width: 600px; height: 340px; }
+    .chart-container { position: relative; width: 100%; max-width: 720px; height: 380px; }
   </style>
 </head>
 <body class="min-h-screen">
@@ -33,26 +33,58 @@
     <!-- Resumen/intro -->
     <section class="space-y-4">
       <h2 class="text-2xl md:text-3xl font-bold text-amber-400">Introducción</h2>
-      <p>Este informe recorre los hitos de la aviación, desde los primeros vuelos hasta los aviones de última generación.</p>
+      <p>Este informe recorre los hitos de la aviación, desde los primeros vuelos hasta los aviones de última generación, haciendo foco en avances técnicos, históricos y tendencias futuras.</p>
     </section>
 
-    <!-- Gráfico de velocidades (si ya existía en tu documento) -->
+    <!-- Gráfico de velocidades -->
     <section class="space-y-6">
       <h2 class="text-2xl md:text-3xl font-bold text-amber-400">Velocidad a través del tiempo</h2>
       <div class="chart-container"><canvas id="speedChart"></canvas></div>
+      <div class="overflow-x-auto">
+        <table class="min-w-full text-left text-gray-300 bg-gray-800 rounded-lg mt-6">
+          <thead>
+            <tr class="bg-gray-700">
+              <th class="py-2 px-3">Avión</th>
+              <th class="py-2 px-3">Año</th>
+              <th class="py-2 px-3">Vel. máx (km/h)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="py-2 px-3">Wright Flyer</td><td class="py-2 px-3">1903</td><td class="py-2 px-3">109</td></tr>
+            <tr><td class="py-2 px-3">Blériot XI</td><td class="py-2 px-3">1909</td><td class="py-2 px-3">75</td></tr>
+            <tr><td class="py-2 px-3">Spirit of St. Louis</td><td class="py-2 px-3">1927</td><td class="py-2 px-3">222</td></tr>
+            <tr><td class="py-2 px-3">DC-3</td><td class="py-2 px-3">1935</td><td class="py-2 px-3">333</td></tr>
+            <tr><td class="py-2 px-3">Spitfire</td><td class="py-2 px-3">1938</td><td class="py-2 px-3">594</td></tr>
+            <tr><td class="py-2 px-3">Heinkel He 178</td><td class="py-2 px-3">1939</td><td class="py-2 px-3">700</td></tr>
+            <tr><td class="py-2 px-3">Boeing 707</td><td class="py-2 px-3">1958</td><td class="py-2 px-3">1010</td></tr>
+            <tr><td class="py-2 px-3">Concorde</td><td class="py-2 px-3">1976</td><td class="py-2 px-3">2179</td></tr>
+            <tr><td class="py-2 px-3">Airbus A380</td><td class="py-2 px-3">2005</td><td class="py-2 px-3">1020</td></tr>
+            <tr><td class="py-2 px-3">Boeing 787</td><td class="py-2 px-3">2011</td><td class="py-2 px-3">954</td></tr>
+          </tbody>
+        </table>
+      </div>
     </section>
 
-    <!-- Sección de aviones modernos con imagen requerida -->
+    <!-- Sección de aviones modernos con imagen -->
     <section id="aviones-modernos" class="space-y-4">
       <h2 class="text-2xl md:text-3xl font-bold text-amber-400">Aviones modernos</h2>
-      <p>Los aviones modernos combinan eficiencia, materiales compuestos y aerodinámica avanzada.</p>
+      <p>
+        Los aviones actuales integran <b>materiales compuestos</b>, motores eficientes y aerodinámica avanzada.<br />
+        Ejemplos destacados:
+        <ul class="list-disc ml-6 mt-2">
+          <li>Airbus A350 XWB: eficiencia, bajo consumo, diseño avanzado</li>
+          <li>Boeing 787 Dreamliner: fuselaje compuesto, tecnología digital</li>
+          <li>Embraer E2: optimización regional y consumo</li>
+          <li>Cessna SkyCourier: logística versátil</li>
+        </ul>
+      </p>
       <figure class="rounded-lg overflow-hidden border border-gray-700">
         <img src="https://images.unsplash.com/photo-1501554728187-ce583db33af7?q=80&w=1600&auto=format&fit=crop" alt="Cabina y fuselaje de avión moderno" class="w-full h-72 object-cover" />
         <figcaption class="text-sm text-gray-300 p-3">Foto: Unsplash (uso permitido).</figcaption>
       </figure>
     </section>
 
-    <!-- Línea de tiempo simple de ejemplo (placeholder) -->
+    <!-- Línea de tiempo extendida -->
     <section class="space-y-6">
       <h2 class="text-2xl md:text-3xl font-bold text-amber-400">Hitos históricos</h2>
       <div class="grid md:grid-cols-2 gap-6">
@@ -61,27 +93,79 @@
           <p>Primer vuelo controlado y sostenido de una aeronave más pesada que el aire.</p>
         </article>
         <article class="relative p-5 rounded-lg timeline-item-card">
+          <h3 class="font-bold text-lg">1914 - Primer vuelo comercial</h3>
+          <p>Inicio de la aviación comercial en Florida, EE.UU.</p>
+        </article>
+        <article class="relative p-5 rounded-lg timeline-item-card">
+          <h3 class="font-bold text-lg">1939 - Heinkel He 178</h3>
+          <p>Primer avión a reacción de la historia, precursor de la aviación moderna.</p>
+        </article>
+        <article class="relative p-5 rounded-lg timeline-item-card">
+          <h3 class="font-bold text-lg">1952 - De Havilland Comet</h3>
+          <p>Primer reactor comercial, inicia la era del jet.</p>
+        </article>
+        <article class="relative p-5 rounded-lg timeline-item-card">
           <h3 class="font-bold text-lg">1976 - Concorde</h3>
           <p>Ícono del vuelo supersónico comercial, marcando récords de velocidad.</p>
         </article>
+        <article class="relative p-5 rounded-lg timeline-item-card">
+          <h3 class="font-bold text-lg">2005 - Airbus A380</h3>
+          <p>Avión comercial más grande del mundo.</p>
+        </article>
+        <article class="relative p-5 rounded-lg timeline-item-card">
+          <h3 class="font-bold text-lg">2011 - Boeing 787 Dreamliner</h3>
+          <p>Avance en eficiencia y confort con fuselaje de materiales compuestos.</p>
+        </article>
+        <article class="relative p-5 rounded-lg timeline-item-card">
+          <h3 class="font-bold text-lg">2019 - Boeing 777X</h3>
+          <p>Ala plegable y motores ultraeficientes.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Sección de innovación y futuro -->
+    <section class="space-y-4">
+      <h2 class="text-2xl md:text-3xl font-bold text-amber-400">Innovación y futuro</h2>
+      <div class="lesson-card p-4 mb-2">
+        <b>Sostenibilidad:</b> Avances en combustibles sostenibles (SAF), investigaciones sobre hidrógeno y aviación eléctrica.
+      </div>
+      <div class="lesson-card p-4 mb-2">
+        <b>Automatización:</b> Cabinas digitalizadas, conectividad total y potencial para vuelos autónomos.
+      </div>
+      <div class="lesson-card p-4 mb-2">
+        <b>Reducir emisiones:</b> Motores más eficientes, diseño optimizado y materiales ligeros para disminuir la huella de carbono.
+      </div>
+      <div class="lesson-card p-4 mb-2">
+        <b>Aviación eléctrica:</b> Prototipos como Eviation Alice y proyectos Airbus ZEROe marcan el rumbo de los próximos años.
       </div>
     </section>
   </main>
 
-  <footer class="text-center text-xs text-gray-400 py-8">Fuente de imágenes: Wikimedia Commons y Unsplash.</footer>
+  <footer class="text-center text-xs text-gray-400 py-8">Fuente de imágenes: Wikimedia Commons y Unsplash. Elaborado con ayuda de Air and Space Museum, Airbus, Boeing y Embraer.</footer>
 
   <script>
-    // Datos de ejemplo del gráfico (si tu archivo ya tenía lógica, puedes fusionarla aquí)
+    // Gráfico extendido
     document.addEventListener('DOMContentLoaded', () => {
       const ctx = document.getElementById('speedChart');
       if (ctx) {
-        const chart = new Chart(ctx, {
+        new Chart(ctx, {
           type: 'line',
           data: {
-            labels: ['Wright Flyer (1903)', 'Spitfire (1938)', 'Boeing 707 (1958)', 'Concorde (1976)'],
+            labels: [
+              'Wright Flyer (1903)',
+              'Blériot XI (1909)',
+              'Spirit of St. Louis (1927)',
+              'DC-3 (1935)',
+              'Spitfire (1938)',
+              'Heinkel He 178 (1939)',
+              'Boeing 707 (1958)',
+              'Concorde (1976)',
+              'Airbus A380 (2005)',
+              'Boeing 787 (2011)'
+            ],
             datasets: [{
               label: 'Velocidad Máxima (km/h)',
-              data: [109, 594, 1010, 2179],
+              data: [109, 75, 222, 333, 594, 700, 1010, 2179, 1020, 954],
               backgroundColor: 'rgba(245, 158, 11, 0.4)',
               borderColor: 'rgba(245, 158, 11, 1)',
               borderWidth: 3,
