@@ -3,34 +3,224 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Historia de la Aviación - TEXTO DE PRUEBA AGREGADO</title>
+    <title>Historia de la Aviación - Las Tres Grandes Eras</title>
     <!-- Carga de Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Usamos la fuente Inter por defecto */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap');
+        
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f0f4f8; /* Fondo más claro y temático */
-            color: #1f2937;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
         }
-        /* EJEMPLO DE TEXTO AGREGADO - PRUEBA DE EDICIÓN */
-        .test-class {
-            color: red;
-            font-weight: bold;
+        
+        .fade-in {
+            animation: fadeIn 0.8s ease-in-out;
+        }
+        
+        .slide-up {
+            animation: slideUp 0.6s ease-out;
+        }
+        
+        .hover-float:hover {
+            transform: translateY(-5px);
+            transition: transform 0.3s ease;
+        }
+        
+        .era-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        
+        .era-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .timeline-line {
+            background: linear-gradient(to right, #667eea, #764ba2);
+            height: 4px;
+            position: relative;
+        }
+        
+        .timeline-dot {
+            width: 16px;
+            height: 16px;
+            background: #667eea;
+            border-radius: 50%;
+            position: absolute;
+            top: -6px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
         }
     </style>
 </head>
 <body class="antialiased">
-    <!-- TEXTO DE EJEMPLO AGREGADO PARA VERIFICAR FUNCIONALIDAD -->
-    <div class="test-class">ESTE ES UN TEXTO DE PRUEBA PARA VERIFICAR EL EDITOR</div>
     
     <!-- Encabezado Principal -->
-    <header class="bg-sky-700 shadow-xl sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex justify-between items-center">
-            <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-wide">
-                ✈️ La Conquista del Cielo
+    <header class="bg-gradient-to-r from-blue-900 to-indigo-900 shadow-2xl sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 text-center">
+            <h1 class="text-4xl sm:text-6xl font-extrabold text-white tracking-wide fade-in">
+                ✈️ Historia de la Aviación
             </h1>
+            <p class="text-xl text-blue-200 mt-4 slide-up">
+                Un viaje a través de las tres grandes eras de la conquista del cielo
+            </p>
         </div>
     </header>
+
+    <!-- Línea de Tiempo -->
+    <section class="py-8 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="timeline-line relative mx-auto">
+                <div class="timeline-dot" style="left: 10%;"></div>
+                <div class="timeline-dot" style="left: 50%;"></div>
+                <div class="timeline-dot" style="left: 90%;"></div>
+            </div>
+            <div class="flex justify-between text-center text-white font-semibold mt-4 text-sm sm:text-base">
+                <span class="hover-float cursor-pointer">1903-1945</span>
+                <span class="hover-float cursor-pointer">1945-1970</span>
+                <span class="hover-float cursor-pointer">1970-Presente</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contenido Principal -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-16">
+        
+        <!-- ERA 1: Los Pioneros (1903-1945) -->
+        <section class="era-card rounded-2xl p-8 shadow-xl slide-up">
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4 flex items-center">
+                        🛩️ Era de los Pioneros (1903-1945)
+                    </h2>
+                    <p class="text-gray-600 text-lg leading-relaxed mb-4">
+                        El 17 de diciembre de 1903, los hermanos Wright realizaron el primer vuelo motorizado exitoso en Kitty Hawk. Este momento histórico marcó el inicio de la aviación moderna.
+                    </p>
+                    <p class="text-gray-600 text-lg leading-relaxed mb-4">
+                        Durante esta era, pioneros como Louis Blériot cruzaron el Canal de la Mancha (1909), Charles Lindbergh voló solo a través del Atlántico (1927), y Amelia Earhart se convirtió en la primera mujer en volar sola sobre el Atlántico (1932).
+                    </p>
+                    <p class="text-gray-600 text-lg leading-relaxed">
+                        La Primera y Segunda Guerra Mundial aceleraron dramáticamente el desarrollo aeronáutico, introduciendo aviones de combate, bombarderos y las primeras tecnologías de radar.
+                    </p>
+                </div>
+                <div class="hover-float">
+                    <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+                         alt="Avión vintage de los pioneros" 
+                         class="rounded-xl shadow-lg w-full h-64 object-cover">
+                    <p class="text-sm text-gray-500 mt-2 text-center">Réplica del Wright Flyer - El inicio de todo</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ERA 2: La Era Dorada (1945-1970) -->
+        <section class="era-card rounded-2xl p-8 shadow-xl slide-up">
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div class="order-2 md:order-1 hover-float">
+                    <img src="https://images.unsplash.com/photo-1540962351504-03099e0a754b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+                         alt="Avión comercial de la era dorada" 
+                         class="rounded-xl shadow-lg w-full h-64 object-cover">
+                    <p class="text-sm text-gray-500 mt-2 text-center">Boeing 707 - Revolucionó la aviación comercial</p>
+                </div>
+                <div class="order-1 md:order-2">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4 flex items-center">
+                        🚀 Era Dorada (1945-1970)
+                    </h2>
+                    <p class="text-gray-600 text-lg leading-relaxed mb-4">
+                        La posguerra trajo la revolución del motor a reacción. En 1947, Chuck Yeager rompió la barrera del sonido en el Bell X-1, abriendo la era supersónica.
+                    </p>
+                    <p class="text-gray-600 text-lg leading-relaxed mb-4">
+                        Los años 50 y 60 vieron el nacimiento de la aviación comercial moderna con el De Havilland Comet (1952) y el Boeing 707 (1958), que democratizaron los viajes aéreos y conectaron el mundo como nunca antes.
+                    </p>
+                    <p class="text-gray-600 text-lg leading-relaxed">
+                        Esta era culminó con la llegada del Boeing 747 "Jumbo Jet" (1970), que estableció nuevos estándares de capacidad y alcance, consolidando la aviación como el medio de transporte global por excelencia.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ERA 3: La Era Moderna (1970-Presente) -->
+        <section class="era-card rounded-2xl p-8 shadow-xl slide-up">
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4 flex items-center">
+                        🌐 Era Moderna (1970-Presente)
+                    </h2>
+                    <p class="text-gray-600 text-lg leading-relaxed mb-4">
+                        La era moderna se caracteriza por la innovación tecnológica continua. El Concorde (1976) marcó la era de los vuelos comerciales supersónicos, aunque su operación cesó en 2003.
+                    </p>
+                    <p class="text-gray-600 text-lg leading-relaxed mb-4">
+                        Los avances en materiales compuestos, sistemas fly-by-wire y eficiencia de combustible han dado lugar a aeronaves como el Boeing 777, Airbus A380 y los modernos Boeing 787 Dreamliner y Airbus A350.
+                    </p>
+                    <p class="text-gray-600 text-lg leading-relaxed">
+                        Hoy, la aviación abraza la sostenibilidad con investigación en combustibles alternativos, aviones eléctricos e híbridos. Empresas como SpaceX han revolucionado además la exploración espacial comercial.
+                    </p>
+                </div>
+                <div class="hover-float">
+                    <img src="https://images.unsplash.com/photo-1583829863295-4d1b2b0d4e6c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+                         alt="Avión comercial moderno" 
+                         class="rounded-xl shadow-lg w-full h-64 object-cover">
+                    <p class="text-sm text-gray-500 mt-2 text-center">Airbus A350 - Tecnología de vanguardia</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Datos Interesantes -->
+        <section class="bg-white rounded-2xl p-8 shadow-xl slide-up">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">📊 Datos Fascinantes</h2>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="text-center hover-float era-card p-6 rounded-xl">
+                    <div class="text-4xl font-bold text-blue-600 mb-2">120</div>
+                    <p class="text-gray-600">Años de aviación</p>
+                </div>
+                <div class="text-center hover-float era-card p-6 rounded-xl">
+                    <div class="text-4xl font-bold text-green-600 mb-2">4.5B</div>
+                    <p class="text-gray-600">Pasajeros anuales</p>
+                </div>
+                <div class="text-center hover-float era-card p-6 rounded-xl">
+                    <div class="text-4xl font-bold text-purple-600 mb-2">26K</div>
+                    <p class="text-gray-600">Aeronaves comerciales</p>
+                </div>
+                <div class="text-center hover-float era-card p-6 rounded-xl">
+                    <div class="text-4xl font-bold text-red-600 mb-2">900</div>
+                    <p class="text-gray-600">km/h velocidad promedio</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Pie de página -->
+    <footer class="bg-gray-900 text-white py-12 mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h3 class="text-2xl font-bold mb-4">🌟 El Futuro de la Aviación</h3>
+            <p class="text-gray-300 text-lg max-w-3xl mx-auto leading-relaxed">
+                Mientras miramos hacia el futuro, la aviación continúa evolucionando con tecnologías como los aviones autónomos, 
+                la propulsión eléctrica y los vuelos espaciales comerciales. El cielo ya no es el límite.
+            </p>
+            <div class="mt-8 text-sm text-gray-400">
+                <p>© 2025 Historia de la Aviación - Un viaje a través del tiempo</p>
+            </div>
+        </div>
+    </footer>
+
 </body>
 </html>
