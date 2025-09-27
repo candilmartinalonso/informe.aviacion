@@ -70,6 +70,28 @@
             50% { transform: scale(1.2); }
             100% { transform: scale(1); }
         }
+        
+        /* Responsive design improvements */
+        @media (max-width: 768px) {
+            .era-card {
+                padding: 1rem;
+            }
+            
+            .grid {
+                gap: 1rem;
+            }
+            
+            img {
+                height: 200px;
+            }
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 0.75rem;
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -123,10 +145,10 @@
                     </p>
                 </div>
                 <div class="hover-float">
-                    <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
-                         alt="Avión vintage de los pioneros" 
+                    <img src="https://es.wikipedia.org/wiki/Archivo:Wrightflyer.jpg" 
+                         alt="Wright Flyer - El primer avión motorizado exitoso de los hermanos Wright" 
                          class="rounded-xl shadow-lg w-full h-64 object-cover">
-                    <p class="text-sm text-gray-500 mt-2 text-center">Réplica del Wright Flyer - El inicio de todo</p>
+                    <p class="text-sm text-gray-500 mt-2 text-center">Wright Flyer - El inicio de todo</p>
                 </div>
             </div>
         </section>
@@ -135,8 +157,8 @@
         <section class="era-card rounded-2xl p-8 shadow-xl slide-up">
             <div class="grid md:grid-cols-2 gap-8 items-center">
                 <div class="order-2 md:order-1 hover-float">
-                    <img src="https://images.unsplash.com/photo-1540962351504-03099e0a754b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
-                         alt="Avión comercial de la era dorada" 
+                    <img src="https://es.wikipedia.org/wiki/Archivo:Boeing_707-321B_Pan_Am_Freer.jpg" 
+                         alt="Boeing 707 de Pan Am - Revolucionó la aviación comercial" 
                          class="rounded-xl shadow-lg w-full h-64 object-cover">
                     <p class="text-sm text-gray-500 mt-2 text-center">Boeing 707 - Revolucionó la aviación comercial</p>
                 </div>
@@ -175,8 +197,8 @@
                     </p>
                 </div>
                 <div class="hover-float">
-                    <img src="https://images.unsplash.com/photo-1583829863295-4d1b2b0d4e6c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
-                         alt="Avión comercial moderno" 
+                    <img src="https://es.wikipedia.org/wiki/Archivo:Airbus_A350-1000_F-WMIL_20.jpg" 
+                         alt="Airbus A350 - Tecnología de vanguardia en aviación moderna" 
                          class="rounded-xl shadow-lg w-full h-64 object-cover">
                     <p class="text-sm text-gray-500 mt-2 text-center">Airbus A350 - Tecnología de vanguardia</p>
                 </div>
@@ -205,7 +227,7 @@
                 </div>
             </div>
         </section>
-
+        
     </main>
 
     <!-- Pie de página -->
