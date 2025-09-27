@@ -1,147 +1,270 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Historia de la Aviación</title>
-  <meta name="description" content="Recorrido visual por los hitos de la aviación: pioneros, era comercial, avances bélicos, supersónico y sostenibilidad" />
-  <style>
-    :root{
-      --blue:#134374;
-      --muted:#6c757d;
-      --card-bg:#ffffff;
-      --page-bg:#f4f6f8;
-      --accent:#0b6fb5;
-      --glass: rgba(255,255,255,0.6);
-      --max-width:1100px;
-      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    }
-    *{box-sizing:border-box}
-    body{margin:0;background:var(--page-bg);color:#222;line-height:1.55}
-    header{background:linear-gradient(180deg,var(--blue),#0f3b5f);color:#fff;padding:36px 16px;text-align:center}
-    header h1{margin:0;font-size:clamp(1.6rem,2.6vw,2.6rem);letter-spacing:0.4px}
-    header p{margin:8px 0 0;color:rgba(255,255,255,0.9)}
-    main{max-width:var(--max-width);margin:28px auto;padding:18px}
-    .card{background:var(--card-bg);border-radius:12px;box-shadow:0 6px 24px rgba(20,67,116,0.08);padding:28px;margin-bottom:20px}
-    .grid{display:grid;grid-template-columns:1fr 320px;gap:24px}
-    @media (max-width:900px){.grid{grid-template-columns:1fr}}
-    h2{color:var(--blue);margin-top:0}
-    .lead{color:var(--muted);margin-bottom:18px}
-    figure{margin:0 0 14px;border-radius:8px;overflow:hidden;display:block;background:#eef3f8}
-    img{width:100%;height:auto;display:block}
-    figcaption{padding:10px 12px;background:linear-gradient(180deg,var(--glass),transparent);font-size:0.95rem;color:var(--muted)}
-    .timeline{background:#e9eef6;border-radius:8px;padding:16px;margin-top:12px}
-    ul{margin:8px 0 0;padding-left:20px}
-    .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
-    @media (max-width:700px){.gallery{grid-template-columns:repeat(2,1fr)}}
-    .gallery figure{border-radius:8px;overflow:hidden;background:#fff}
-    .credits{font-size:0.9rem;color:var(--muted);margin-top:16px}
-    a.credit-link{color:var(--accent);text-decoration:none}
-    .meta{font-size:0.9rem;color:var(--muted);margin-top:8px}
-    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Conquista Definitiva de los Cielos</title>
+    <!-- Carga de Tailwind CSS para un diseño moderno y responsivo -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0c0d12; /* Fondo muy oscuro, como el espacio */
+            color: #f0f4f8;
+            line-height: 1.7;
+        }
+        .era-card {
+            background-color: #1a1c24; /* Fondo de tarjeta más profundo */
+            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+            border: 1px solid #2d3748;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .era-card:hover {
+            transform: translateY(-8px) scale(1.01);
+            box-shadow: 0 20px 40px rgba(0, 180, 255, 0.3); /* Sombra de neón azul */
+        }
+        .glow-title {
+            text-shadow: 0 0 15px rgba(100, 180, 255, 0.9);
+            animation: pulse 4s infinite ease-in-out;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+        /* Estilo para simular un efecto de animación de imagen (lento zoom) */
+        .image-container {
+            overflow: hidden;
+            border-radius: 0.75rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+        .era-image {
+            transition: transform 10s ease-in-out; /* Animación más lenta y sutil */
+        }
+        .era-card:hover .era-image {
+            transform: scale(1.03);
+        }
+        .highlight-box {
+            background-color: #242730;
+            border-left: 5px solid;
+        }
+    </style>
 </head>
-<body>
-  <header>
-    <h1>Historia de la Aviación</h1>
-    <p>Un viaje visual desde los pioneros hasta la era moderna</p>
-  </header>
+<body class="p-4 sm:p-10">
 
-  <main>
-    <article class="card">
-      <div class="grid" role="region" aria-labelledby="pioneros-title">
-        <section>
-          <h2 id="pioneros-title">Los primeros pioneros</h2>
-          <p class="lead">Innovación, ensayo y error: aquí nacieron los conceptos de control, sustentación y propulsión que hicieron posible el vuelo humano.</p>
+    <header class="text-center mb-16">
+        <h1 class="text-6xl sm:text-8xl font-extrabold text-blue-300 glow-title mb-4">La Conquista Definitiva de los Cielos</h1>
+        <p class="text-2xl text-gray-400 font-light">Narrativa épica del ingenio humano: de los cometas a los gigantes de titanio.</p>
+        <div class="h-1 bg-blue-500 w-32 mx-auto mt-6 rounded-full"></div>
+    </header>
 
-          <figure>
-            <img src="https://example.com/wright-flyer.jpg" alt="Wright Flyer en su primer vuelo en Kitty Hawk" loading="lazy">
-            <figcaption><strong>1903</strong> Primeros vuelos de los hermanos Wright — fotografía histórica, crédito: colección histórica.</figcaption>
-          </figure>
+    <main class="max-w-7xl mx-auto space-y-12">
 
-          <p class="meta">Breve texto complementario sobre los experimentos con planeadores, el túnel de viento y el desarrollo del control aerodinámico.</p>
-        </section>
+        <!-- SECCIÓN 1: La Era de los Pioneros y las Leyes del Vuelo -->
+        <div class="era-card rounded-2xl p-8 shadow-2xl">
+            <h2 class="text-4xl font-bold text-teal-400 mb-6">1. Los Sueños, los Globos y el Cimiento Científico</h2>
+            <p class="text-xl mb-6">Durante milenios, el cielo fue el límite. El primer desafío: entender la <strong class="text-teal-300">sustentación.</strong></p>
 
-        <aside>
-          <h3>Cronología de hitos</h3>
-          <div class="timeline" aria-hidden="false">
-            <ul>
-              <li>1903: Primer vuelo de los hermanos Wright</li>
-              <li>1927: Lindbergh cruza el Atlántico</li>
-              <li>1939–1945: Avances acelerados en la Segunda Guerra Mundial</li>
-              <li>1958: Entrada en servicio del reactor comercial Boeing 707</li>
-              <li>1969: Primer vuelo del Concorde</li>
-              <li>2005: Entrada en servicio del Airbus A380</li>
-              <li>2009: Boeing 787 Dreamliner</li>
-            </ul>
-          </div>
-        </aside>
-      </div>
-    </article>
+            <div class="md:grid md:grid-cols-3 md:gap-8 items-start">
+                <!-- Columna Visual -->
+                <div class="md:col-span-1 mb-6 md:mb-0">
+                    <div class="image-container">
+                        <!-- IMAGEN SUGERIDA: globo_montgolfier.jpg -->
+                        <img src="./globo_montgolfier.jpg" alt="Globo Montgolfier volando" class="w-full era-image">
+                    </div>
+                    <p class="text-sm text-gray-500 mt-3 italic">
+                        <span class="font-bold text-teal-300">Visualización Clave:</span> Animación de un globo Montgolfier ascendiendo, mostrando el aire caliente.
+                    </p>
+                </div>
+                <!-- Columna de la Narrativa -->
+                <div class="md:col-span-2 font-semibold">
+                    <p class="mb-4">
+                        La historia del vuelo inicia con la imaginación: desde los mitos de Ícaro hasta los cohetes y cometas explosivos desarrollados en la antigua China. Pero el enfoque científico real comenzó en el siglo XVIII.
+                    </p>
+                    <div class="highlight-box border-teal-500 p-4 rounded-lg mb-4">
+                        <span class="font-bold text-teal-300">Primer Vuelo Humano:</span> En 1783, los **Hermanos Montgolfier** conquistaron la vertical con su globo de aire caliente. Aunque carecía de control direccional, probaron que el hombre podía separarse de la tierra.
+                    </div>
+                    <p class="mb-4">
+                        El verdadero salto conceptual lo dio **Sir George Cayley**. A principios del siglo XIX, definió el avión como una máquina con <strong class="text-teal-300">alas fijas</strong>. Fue el primero en descomponer el problema del vuelo en las cuatro fuerzas: Sustentación, Peso, Empuje y Resistencia.
+                    </p>
+                    <p class="mb-4">
+                        **Otto Lilienthal** (1890s) llevó la teoría a la práctica, realizando más de 2,000 vuelos en planeador. Su trágico accidente en 1896 subrayó que el control aerodinámico era más crucial que la simple potencia.
+                    </p>
+                </div>
+            </div>
+        </div>
 
-    <article class="card">
-      <h2>Era dorada y la aviación comercial</h2>
-      <p class="lead">De los vuelos pioneros a rutas transoceánicas que conectaron continentes y culturas.</p>
+        <!-- SECCIÓN 2: El Nacimiento del Vuelo Motorizado -->
+        <div class="era-card rounded-2xl p-8 shadow-2xl">
+            <h2 class="text-4xl font-bold text-yellow-400 mb-6">2. El Control: El Triunfo de Kitty Hawk (1903-1914)</h2>
+            <p class="text-xl mb-6">No se trataba solo de volar, sino de <strong class="text-yellow-300">controlar</strong> el aparato en tres dimensiones.</p>
 
-      <figure>
-        <img src="https://example.com/lindbergh-spirit.jpg" alt="Charles Lindbergh junto al Spirit of St. Louis" loading="lazy">
-        <figcaption><strong>1927</strong> Charles Lindbergh y el Spirit of St. Louis — primer cruce transatlántico en solitario.</figcaption>
-      </figure>
+            <div class="md:grid md:grid-cols-3 md:gap-8 items-start flex-row-reverse">
+                <!-- Columna de la Narrativa -->
+                <div class="md:col-span-2 font-semibold">
+                    <p class="mb-4">
+                        Los **Hermanos Wright** (Orville y Wilbur) se distinguieron de otros inventores al enfocarse obsesivamente en el control. Diseñaron y construyeron túneles de viento caseros para probar perfiles alares.
+                    </p>
+                    <div class="highlight-box border-yellow-500 p-4 rounded-lg mb-4">
+                        <span class="font-bold text-yellow-300">El Control de Tres Ejes:</span> Su genio radicó en implementar un sistema interconectado para maniobrar: **Alabeo** (con "alabeo del ala"), **Cabeceo** (con elevador) y **Guiñada** (con timón). Esto hizo que su *Flyer I* fuera la primera aeronave realmente controlable.
+                    </p>
+                    <p class="mb-4">
+                        El **17 de diciembre de 1903**, en Kitty Hawk, el vuelo duró apenas 12 segundos, pero cumplió los tres criterios: propulsado, sostenido y controlado. En los años siguientes, los Wright perfeccionaron sus máquinas, demostrando la aviación en Europa y Estados Unidos.
+                    </p>
+                    <p class="mb-4">
+                        <span class="font-bold text-yellow-300">Anécdota:</span> El diseño de sus hélices fue su secreto. Se dieron cuenta de que una hélice no empuja como un tornillo, sino que debe generar sustentación como un ala giratoria.
+                    </p>
+                </div>
+                <!-- Columna Visual -->
+                <div class="md:col-span-1 mt-6 md:mt-0">
+                    <div class="image-container">
+                        <!-- IMAGEN SUGERIDA: wright_flyer_1903.jpg -->
+                        <img src="./wright_flyer_1903.jpg" alt="Wright Flyer 1903 en el aire" class="w-full era-image">
+                    </div>
+                    <p class="text-sm text-gray-500 mt-3 italic">
+                        <span class="font-bold text-yellow-300">Visualización Clave:</span> Diagrama animado que ilustra el **Control de Tres Ejes** (Roll, Pitch, Yaw).
+                    </p>
+                </div>
+            </div>
+        </div>
 
-      <div class="gallery" aria-label="Galería de aviones comerciales históricos">
-        <figure>
-          <img src="https://example.com/boeing707-twa.jpg" alt="Boeing 707 en vuelo" loading="lazy">
-          <figcaption>Boeing 707 — inicio de la era del reactor comercial.</figcaption>
-        </figure>
-        <figure>
-          <img src="https://example.com/a380.jpg" alt="Airbus A380 en aproximación" loading="lazy">
-          <figcaption>Airbus A380 — transporte de alta capacidad.</figcaption>
-        </figure>
-        <figure>
-          <img src="https://example.com/dreamliner.jpg" alt="Boeing 787 Dreamliner en vuelo" loading="lazy">
-          <figcaption>Boeing 787 Dreamliner — materiales compuestos y eficiencia.</figcaption>
-        </figure>
-      </div>
-    </article>
+        <!-- SECCIÓN 3: La Aceleración de las Guerras y la Edad de Oro -->
+        <div class="era-card rounded-2xl p-8 shadow-2xl">
+            <h2 class="text-4xl font-bold text-red-400 mb-6">3. De Biplanos de Tela a Monoplanos de Metal (1914-1945)</h2>
+            <p class="text-xl mb-6">La guerra impulsó la innovación, transformando juguetes voladores en <strong class="text-red-300">máquinas de precisión.</strong></p>
 
-    <article class="card">
-      <h2>Avances bélicos y tecnológicos</h2>
-      <p class="lead">La Segunda Guerra Mundial y la posguerra impulsaron motores, aerodinámica y producción en masa para la aviación militar y civil.</p>
+            <div class="md:grid md:grid-cols-3 md:gap-8 items-start">
+                <!-- Columna Visual -->
+                <div class="md:col-span-1 mb-6 md:mb-0">
+                    <div class="image-container">
+                        <!-- IMAGEN SUGERIDA: douglas_dc3.jpg -->
+                        <img src="./douglas_dc3.jpg" alt="Avión Douglas DC-3" class="w-full era-image">
+                    </div>
+                    <p class="text-sm text-gray-500 mt-3 italic">
+                        <span class="font-bold text-red-300">Visualización Clave:</span> Mapa animado que muestra la expansión de las rutas del DC-3.
+                    </p>
+                </div>
+                <!-- Columna de la Narrativa -->
+                <div class="md:col-span-2 font-semibold">
+                    <p class="mb-4">
+                        La **Primera Guerra Mundial** (1914-1918) fue el primer catalizador, pasando del reconocimiento aéreo a los duelos de "dogfights" y el desarrollo de sistemas de sincronización para ametralladoras.
+                    </p>
+                    <p class="mb-4">
+                        En la posguerra, la **Edad de Oro** se centró en batir récords y popularizar el vuelo. **Charles Lindbergh** (primer cruce transatlántico sin escalas, 1927) y **Amelia Earhart** se convirtieron en íconos, atrayendo inversiones en la aviación civil.
+                    </p>
+                    <div class="highlight-box border-red-500 p-4 rounded-lg mb-4">
+                        <span class="font-bold text-red-300">El Gigante Comercial:</span> El **Douglas DC-3 (1935)** no solo era rápido y seguro, sino que fue el primer avión que hizo <strong class="text-red-300">rentable</strong> el transporte de pasajeros, creando la industria aerocomercial moderna.
+                    </div>
+                    <p class="mb-4">
+                        La **Segunda Guerra Mundial** (1939-1945) fue la era del avance tecnológico: se desarrollaron cabinas presurizadas (para volar más alto), radares y, crucialmente, el primer motor a reacción operativo, desarrollado por Alemania (Me 262).
+                    </p>
+                </div>
+            </div>
+        </div>
 
-      <div class="gallery" aria-hidden="false">
-        <figure>
-          <img src="https://example.com/spitfire.jpg" alt="Supermarine Spitfire en exhibición" loading="lazy">
-          <figcaption>Supermarine Spitfire — caza británico emblemático.</figcaption>
-        </figure>
-        <figure>
-          <img src="https://example.com/p51-mustang.jpg" alt="North American P-51 Mustang" loading="lazy">
-          <figcaption>P-51 Mustang — caza de escolta de largo alcance.</figcaption>
-        </figure>
-      </div>
+        <!-- SECCIÓN 4: La Conquista de la Velocidad y el Jet -->
+        <div class="era-card rounded-2xl p-8 shadow-2xl">
+            <h2 class="text-4xl font-bold text-sky-400 mb-6">4. La Era del Jet: Rompiendo la Barrera del Sonido (1945-1970)</h2>
+            <p class="text-xl mb-6">El motor de pistón tocó su techo. El <strong class="text-sky-300">turborreactor</strong> cambió las reglas de la velocidad y la altitud.</p>
 
-      <p class="meta">Texto complementario que explica cómo la guerra aceleró la innovación en motores, aviónica y materiales.</p>
-    </article>
+            <div class="md:grid md:grid-cols-3 md:gap-8 items-start flex-row-reverse">
+                <!-- Columna de la Narrativa -->
+                <div class="md:col-span-2 font-semibold">
+                    <p class="mb-4">
+                        La idea del motor a reacción, patentada por **Frank Whittle** y desarrollada por **Hans von Ohain**, permitió a los aviones volar a más de 800 km/h por encima de las inclemencias del tiempo.
+                    </p>
+                    <p class="mb-4">
+                        El **De Havilland Comet (1952)** fue el primer avión a reacción comercial, pero fue superado por el robusto y exitoso **Boeing 707** (1958). Este último hizo que el viaje intercontinental fuera rutinario.
+                    </p>
+                    <div class="highlight-box border-sky-500 p-4 rounded-lg mb-4">
+                        <span class="font-bold text-sky-300">El Mach 1:</span> En 1947, **Chuck Yeager** rompió la barrera del sonido en el cohete **Bell X-1**, inaugurando la era supersónica. Luego vendría el avión de pasajeros supersónico **Concorde** (Mach 2) en 1976, encogiendo el Atlántico a tres horas y media.
+                    </div>
+                    <p class="mb-4">
+                        **Impacto Social:** El transporte masivo se hizo realidad. Las aerolíneas se globalizaron y las vacaciones y negocios internacionales se volvieron accesibles para millones.
+                    </p>
+                </div>
+                <!-- Columna Visual -->
+                <div class="md:col-span-1 mt-6 md:mt-0">
+                    <div class="image-container">
+                        <!-- IMAGEN SUGERIDA: concorde_supersonico.jpg -->
+                        <img src="./concorde_supersonico.jpg" alt="Concorde volando a Mach 2" class="w-full era-image">
+                    </div>
+                    <p class="text-sm text-gray-500 mt-3 italic">
+                        <span class="font-bold text-sky-300">Visualización Clave:</span> Simulación del boom sónico generado por el Concorde al superar Mach 1.
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- NUEVA SECCIÓN: Alas Rotatorias -->
+        <div class="era-card rounded-2xl p-8 shadow-2xl">
+            <h2 class="text-4xl font-bold text-green-400 mb-6">5. La Revolución del Rotor: Dominando la Vertical</h2>
+            <p class="text-xl mb-6">Mientras el avión conquistaba la velocidad, otra máquina luchaba por la <strong class="text-green-300">flexibilidad vertical</strong>.</p>
 
-    <article class="card">
-      <h2>La era supersónica</h2>
-      <figure>
-        <img src="https://example.com/concorde-airfrance.jpg" alt="Concorde de Air France en vuelo" loading="lazy">
-        <figcaption>Concorde — transporte comercial supersónico.</figcaption>
-      </figure>
-      <p class="meta">El Concorde simbolizó el avance hacia la aviación de alta velocidad, con un legado técnico y cultural importante.</p>
-    </article>
+            <div class="md:grid md:grid-cols-3 md:gap-8 items-start">
+                <!-- Columna Visual -->
+                <div class="md:col-span-1 mb-6 md:mb-0">
+                    <div class="image-container">
+                        <!-- IMAGEN SUGERIDA: sikorsky_vs300.jpg -->
+                        <img src="./sikorsky_vs300.jpg" alt="Sikorsky VS-300" class="w-full era-image">
+                    </div>
+                    <p class="text-sm text-gray-500 mt-3 italic">
+                        <span class="font-bold text-green-300">Visualización Clave:</span> Diagrama del rotor principal y el rotor de cola (anti-torque) del helicóptero.
+                    </p>
+                </div>
+                <!-- Columna de la Narrativa -->
+                <div class="md:col-span-2 font-semibold">
+                    <p class="mb-4">
+                        El sueño de Da Vinci del "tornillo aéreo" se hizo realidad con el **helicóptero**. El desafío era manejar el par (torque) del rotor principal, que haría girar el fuselaje.
+                    </p>
+                    <p class="mb-4">
+                        Aunque hubo experimentos previos (como el Focke-Wulf Fw 61), el diseño moderno fue formalizado por **Igor Sikorsky**. Su **VS-300 (1939)** y el posterior **R-4** (el primer helicóptero producido en masa) establecieron la configuración estándar de rotor principal y rotor de cola.
+                    </p>
+                    <div class="highlight-box border-green-500 p-4 rounded-lg mb-4">
+                        <span class="font-bold text-green-300">Un Avance Único:</span> El helicóptero permite el **Hover** (vuelo estacionario) y el desplazamiento en cualquier dirección, siendo indispensable para misiones de búsqueda y rescate, evacuaciones médicas y transporte en zonas remotas, redefiniendo la utilidad práctica del vuelo.
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    <article class="card">
-      <h2>Gigantes modernos y sostenibilidad</h2>
-      <p class="lead">Hoy la aviación busca equilibrio entre capacidad y menor impacto ambiental mediante nuevos diseños, combustibles y optimización operativa.</p>
+        <!-- SECCIÓN 6: Aviación Digital y el Futuro -->
+        <div class="era-card rounded-2xl p-8 shadow-2xl">
+            <h2 class="text-4xl font-bold text-purple-400 mb-6">6. La Era Digital: Fly-by-Wire, Drones y el Desafío Sostenible</h2>
+            <p class="text-xl mb-6">Hoy, el vuelo se define por la <strong class="text-purple-300">computarización</strong>, la eficiencia y el futuro sin combustibles fósiles.</p>
 
-      <figure>
-        <img src="https://example.com/modern-airport.jpg" alt="Aeropuerto moderno con terminales y aeronaves" loading="lazy">
-        <figcaption>Infraestructura y operaciones: hubs globales y nuevas tecnologías en tierra.</figcaption>
-      </figure>
+            <div class="md:grid md:grid-cols-3 md:gap-8 items-start flex-row-reverse">
+                <!-- Columna de la Narrativa -->
+                <div class="md:col-span-2 font-semibold">
+                    <p class="mb-4">
+                        La aviación moderna se basa en el **Fly-by-Wire**, un sistema que reemplaza los cables mecánicos por señales electrónicas y computadoras, lo que permite un control más preciso y seguro, especialmente en aviones aerodinámicamente inestables como los cazas modernos.
+                    </p>
+                    <p class="mb-4">
+                        Gigantes de alta capacidad como el **Boeing 747** y el **Airbus A380** han dominado el transporte masivo. Sin embargo, el futuro se centra en la eficiencia del combustible con aviones como el **B-787 Dreamliner** (materiales compuestos y menor peso) y el **A350**.
+                    </p>
+                    <div class="highlight-box border-purple-500 p-4 rounded-lg mb-4">
+                        <span class="font-bold text-purple-300">El Nuevo Cielo:</span> La proliferación de los **UAVs (Drones)** ha democratizado el acceso al espacio aéreo, desde la vigilancia militar hasta la entrega de paquetería. Además, la industria se enfrenta al reto de la **descarbonización**, explorando propulsión eléctrica/híbrida y combustibles sostenibles (SAF).
+                    </p>
+                    <p class="mb-4">
+                        <span class="font-bold text-purple-300">Cita de cierre:</span> "El avión es la nave de los siglos. Ha unido a todos los hombres, de todas las razas, en una sola mente y en un solo propósito: el progreso de la civilización."
+                    </p>
+                </div>
+                <!-- Columna Visual -->
+                <div class="md:col-span-1 mt-6 md:mt-0">
+                    <div class="image-container">
+                        <!-- IMAGEN SUGERIDA: cabina_digital_b787.jpg -->
+                        <img src="./cabina_digital_b787.jpg" alt="Cabina de mando moderna (Glass Cockpit)" class="w-full era-image">
+                    </div>
+                    <p class="text-sm text-gray-500 mt-3 italic">
+                        <span class="font-bold text-purple-300">Visualización Clave:</span> Animación de un "Glass Cockpit" mostrando los sistemas digitales y la navegación GPS.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
 
-      <p class="credits">Texto original y estructura mejorados; reemplaza las URLs de ejemplo por tus imágenes descargadas o enlaces públicos. Añade créditos y licencias en cada figcaption si usas material con derechos.</p>
-    </article>
-  </main>
+    <footer class="text-center mt-20 pt-8 border-t border-gray-800 text-gray-600">
+        <p class="text-lg font-light">&copy; 2024 Narrativa de Aviación - Misión Cumplida.</p>
+    </footer>
+
 </body>
 </html>
