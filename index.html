@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historia de la Aviación</title>
+    <!-- Carga de Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Usamos la fuente Inter por defecto */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8; /* Fondo más claro y temático */
+            color: #1f2937;
+        }
+        /* Clase de animación base (oculta y ligeramente desplazada) */
+        .animate-initial {
+            opacity: 0;
+            transform: translateY(40px);
+        }
+        /* Clase para el estado final de la animación */
+        .animate-final {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Encabezado Principal -->
+    <header class="bg-sky-700 shadow-xl sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex justify-between items-center">
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-wide">
+                ✈️ La Conquista del Cielo
+            </h1>
+            <!-- Navegación con efecto hover -->
+            <nav class="hidden md:block">
+                <a href="#inicios" class="text-white hover:text-sky-200 px-3 py-2 rounded-md text-sm font-medium transition duration-150 ease-in-out">Inicios</a>
+                <a href="#hermanos-wright" class="text-white hover:text-sky-200 px-3 py-2 rounded-md text-sm font-medium transition duration-150 ease-in-out">Pioneros</a>
+                <a href="#guerra-jet" class="text-white hover:text-sky-200 px-3 py-2 rounded-md text-sm font-medium transition duration-150 ease-in-out">Era del Jet</a>
+                <a href="#moderna" class="text-white hover:text-sky-200 px-3 py-2 rounded-md text-sm font-medium transition duration-150 ease-in-out">Futuro</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Contenedor principal de contenido -->
+    <main class="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
+
+        <!-- Introducción con efecto de profundidad -->
+        <section class="mb-16 bg-white p-8 rounded-2xl shadow-2xl border-t-4 border-sky-500">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Un Viaje Aéreo a Través del Tiempo</h2>
+            <p class="text-lg text-gray-700 leading-relaxed border-l-4 border-gray-200 pl-4">
+                El sueño de volar ha cautivado a la humanidad durante milenios. Desde los mitos de Ícaro hasta los modernos viajes espaciales, la historia de la aviación es un testimonio de ingenio, perseverancia y la inquebrantable voluntad de desafiar la gravedad. A continuación, exploramos los hitos que definieron la conquista del cielo.
+            </p>
+        </section>
+
+        <!-- Sección 1: Los Inicios y Precursores -->
+        <section id="inicios" class="section-animate mb-16 bg-white p-8 rounded-xl shadow-lg transition duration-700 hover:shadow-xl hover:shadow-sky-500/50 animate-initial">
+            <h2 class="text-3xl font-extrabold text-sky-600 border-b-2 border-sky-400 pb-3 mb-6">1. Sueños de Vuelo y Globos Aerostáticos (1485 - 1890)</h2>
+            <div class="md:flex md:space-x-8 items-start">
+                <div class="md:w-2/3">
+                    <p class="mb-4 text-gray-600">
+                        Los primeros intentos serios de elevación datan de siglos. Figuras como **Leonardo da Vinci** diseñaron intrincados bocetos de máquinas voladoras y helicópteros ($ca. 1485$) en el siglo XV. Sin embargo, el primer éxito sostenido en el aire llegó con la invención del **globo aerostático** en Francia.
+                    </p>
+                    <p class="mb-4 text-gray-600">
+                        El 4 de junio de 1783, los hermanos franceses **Joseph-Michel y Jacques-Étienne Montgolfier** realizaron el primer vuelo público. Poco después, en noviembre del mismo año, lograron el primer vuelo tripulado por humanos, marcando el inicio oficial de la era aeronáutica, aunque sin control direccional.
+                    </p>
+                </div>
+                <div class="md:w-1/3 mt-6 md:mt-0">
+                    <!-- Placeholder mejorado: color histórico, texto descriptivo -->
+                    <img src="https://placehold.co/400x250/34495e/ecf0f1?text=Globo+Montgolfier+(1783)" alt="Imagen de un globo aerostático" class="w-full h-auto rounded-lg shadow-lg object-cover border-4 border-sky-100">
+                    <p class="text-sm text-center text-gray-500 mt-2 italic">Primer vuelo tripulado por los hermanos Montgolfier.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección 2: El Vuelo Controlado -->
+        <section id="hermanos-wright" class="section-animate mb-16 bg-white p-8 rounded-xl shadow-lg transition duration-700 hover:shadow-xl hover:shadow-sky-500/50 animate-initial">
+            <h2 class="text-3xl font-extrabold text-sky-600 border-b-2 border-sky-400 pb-3 mb-6">2. El Nacimiento del Avión: Los Hermanos Wright (1903)</h2>
+            <div class="md:flex md:space-x-8 items-start flex-row-reverse">
+                <div class="md:w-2/3">
+                    <p class="mb-4 text-gray-600">
+                        La verdadera revolución llegó con **Orville y Wilbur Wright**. Reconocieron que la clave no era solo la potencia, sino el **control tridimensional** del aparato. Pasaron años estudiando aerodinámica usando un túnel de viento casero.
+                    </p>
+                    <p class="mb-4 text-gray-600">
+                        El 17 de diciembre de 1903, en Kitty Hawk, Carolina del Norte, lograron el **primer vuelo sostenido, controlado y propulsado** de una máquina más pesada que el aire. El **Wright Flyer** voló durante 12 segundos. Este evento es considerado el punto de partida de la aviación.
+                    </p>
+                </div>
+                <div class="md:w-1/3 mt-6 md:mt-0">
+                    <!-- Placeholder mejorado: color temático de cielo -->
+                    <img src="https://placehold.co/400x250/1e88e5/ffffff?text=Wright+Flyer+en+Kitty+Hawk" alt="Imagen del Wright Flyer de 1903" class="w-full h-auto rounded-lg shadow-lg object-cover border-4 border-sky-100">
+                    <p class="text-sm text-center text-gray-500 mt-2 italic">El hito que cambió el mundo.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección 3: La Era del Jet y el Transporte Comercial -->
+        <section id="guerra-jet" class="section-animate mb-16 bg-white p-8 rounded-xl shadow-lg transition duration-700 hover:shadow-xl hover:shadow-sky-500/50 animate-initial">
+            <h2 class="text-3xl font-extrabold text-sky-600 border-b-2 border-sky-400 pb-3 mb-6">3. Turbohélices y Jets: El Transporte Masivo (1940 - 2000)</h2>
+            <div class="md:flex md:space-x-8 items-start">
+                <div class="md:w-2/3">
+                    <p class="mb-4 text-gray-600">
+                        La **Segunda Guerra Mundial** aceleró el desarrollo de la aviación militar, culminando con la invención del motor a reacción (jet). Esto permitió velocidades y altitudes mucho mayores.
+                    </p>
+                    <p class="mb-4 text-gray-600">
+                        Tras la guerra, esta tecnología se adaptó a la aviación civil. En 1958, el **Boeing 707** revolucionó los viajes, haciendo del transporte aéreo transcontinental una realidad masiva y económica. El desarrollo de aeronaves como el **Boeing 747** y el vuelo supersónico del **Concorde** acortaron distancias y cambiaron la cultura global.
+                    </p>
+                </div>
+                <div class="md:w-1/3 mt-6 md:mt-0">
+                    <!-- Placeholder mejorado: color metálico, nombre de avión -->
+                    <img src="https://placehold.co/400x250/004d7a/ffffff?text=Boeing+707+Pionero+del+Jet" alt="Imagen de un avión a reacción Boeing 707" class="w-full h-auto rounded-lg shadow-lg object-cover border-4 border-sky-100">
+                    <p class="text-sm text-center text-gray-500 mt-2 italic">El jet hizo que el mundo se sintiera más pequeño.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección 4: La Aviación Moderna e Innovaciones -->
+        <section id="moderna" class="section-animate mb-16 bg-white p-8 rounded-xl shadow-lg transition duration-700 hover:shadow-xl hover:shadow-sky-500/50 animate-initial">
+            <h2 class="text-3xl font-extrabold text-sky-600 border-b-2 border-sky-400 pb-3 mb-6">4. El Futuro del Vuelo: Digital y Sostenible (2000 - Hoy)</h2>
+            <div class="md:flex md:space-x-8 items-start flex-row-reverse">
+                <div class="md:w-2/3">
+                    <p class="mb-4 text-gray-600">
+                        La aviación moderna está dominada por la tecnología. Los **cockpits de cristal** con sistemas de control de vuelo digital (`Fly-by-Wire`) han mejorado drásticamente la seguridad y la eficiencia.
+                    </p>
+                    <p class="mb-4 text-gray-600">
+                        Hoy, el enfoque está en la **sostenibilidad**. Aviones como el **Airbus A350** y el **Boeing 787 Dreamliner** utilizan materiales compuestos avanzados para reducir el consumo de combustible. El futuro se vislumbra con taxis aéreos eléctricos (`eVTOL`), vuelos hipersónicos y la integración total de vehículos aéreos no tripulados (`drones`) en el espacio aéreo.
+                    </p>
+                </div>
+                <div class="md:w-1/3 mt-6 md:mt-0">
+                    <!-- Placeholder mejorado: color verde/teal para sostenibilidad -->
+                    <img src="https://placehold.co/400x250/00bfa5/ffffff?text=Cockpit+Digital+y+Sostenibilidad" alt="Imagen de una cabina de cristal de avión moderno" class="w-full h-auto rounded-lg shadow-lg object-cover border-4 border-sky-100">
+                    <p class="text-sm text-center text-gray-500 mt-2 italic">Materiales compuestos y cabinas digitales.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Pie de página -->
+    <footer class="bg-gray-800 mt-12 py-6">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-400">
+            <p>&copy; 2025 Explorando la Historia de la Aviación. | Un viaje de milenios.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript para la animación de Intersection Observer -->
+    <script>
+        // Obtiene todas las secciones que deben animarse
+        const sections = document.querySelectorAll('.section-animate');
+
+        // Configuración del observador: observa la visibilidad de los elementos
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                // Si la sección es visible (o el 10% de ella)
+                if (entry.isIntersecting) {
+                    // Aplica la clase final para la transición
+                    entry.target.classList.remove('animate-initial');
+                    entry.target.classList.add('animate-final');
+                    // Deja de observar el elemento una vez animado
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            // Umbral: inicia la animación cuando el 10% del elemento es visible
+            threshold: 0.1
+        });
+
+        // Observa cada sección
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+
+</body>
+</html>
