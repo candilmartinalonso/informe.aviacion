@@ -1,73 +1,147 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Historia de la Aviación</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-        body { font-family: Arial, sans-serif; background: #f8f9fa; margin: 0; padding: 0; }
-        header { background: #134374; color: #fff; padding: 24px 0; text-align: center; }
-        section { max-width: 800px; margin: 32px auto; background: #fff; border-radius: 6px; box-shadow: 0 2px 10px #ccc; padding: 32px; }
-        h1, h2, h3 { color: #134374; }
-        img { max-width: 100%; margin: 12px 0; border-radius: 3px; }
-        .timeline { background: #e3e7ee; border-radius: 5px; padding: 16px; margin: 24px 0; }
-        .credits { color: #888; font-size: 13px; margin-top: 32px; }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Historia de la Aviación</title>
+  <meta name="description" content="Recorrido visual por los hitos de la aviación: pioneros, era comercial, avances bélicos, supersónico y sostenibilidad" />
+  <style>
+    :root{
+      --blue:#134374;
+      --muted:#6c757d;
+      --card-bg:#ffffff;
+      --page-bg:#f4f6f8;
+      --accent:#0b6fb5;
+      --glass: rgba(255,255,255,0.6);
+      --max-width:1100px;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--page-bg);color:#222;line-height:1.55}
+    header{background:linear-gradient(180deg,var(--blue),#0f3b5f);color:#fff;padding:36px 16px;text-align:center}
+    header h1{margin:0;font-size:clamp(1.6rem,2.6vw,2.6rem);letter-spacing:0.4px}
+    header p{margin:8px 0 0;color:rgba(255,255,255,0.9)}
+    main{max-width:var(--max-width);margin:28px auto;padding:18px}
+    .card{background:var(--card-bg);border-radius:12px;box-shadow:0 6px 24px rgba(20,67,116,0.08);padding:28px;margin-bottom:20px}
+    .grid{display:grid;grid-template-columns:1fr 320px;gap:24px}
+    @media (max-width:900px){.grid{grid-template-columns:1fr}}
+    h2{color:var(--blue);margin-top:0}
+    .lead{color:var(--muted);margin-bottom:18px}
+    figure{margin:0 0 14px;border-radius:8px;overflow:hidden;display:block;background:#eef3f8}
+    img{width:100%;height:auto;display:block}
+    figcaption{padding:10px 12px;background:linear-gradient(180deg,var(--glass),transparent);font-size:0.95rem;color:var(--muted)}
+    .timeline{background:#e9eef6;border-radius:8px;padding:16px;margin-top:12px}
+    ul{margin:8px 0 0;padding-left:20px}
+    .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
+    @media (max-width:700px){.gallery{grid-template-columns:repeat(2,1fr)}}
+    .gallery figure{border-radius:8px;overflow:hidden;background:#fff}
+    .credits{font-size:0.9rem;color:var(--muted);margin-top:16px}
+    a.credit-link{color:var(--accent);text-decoration:none}
+    .meta{font-size:0.9rem;color:var(--muted);margin-top:8px}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+  </style>
 </head>
 <body>
-    <header>
-        <h1>Historia de la Aviación</h1>
-        <p>Un viaje visual desde los pioneros hasta la era moderna</p>
-    </header>
-    <section>
-        <h2>Los primeros pioneros</h2>
-        <img src="hermanos-wright-vuelo1913.jpg" alt="Hermanos Wright Primer Vuelo">
-        <p>El 17 de diciembre de 1903, los hermanos Wright realizaron el primer vuelo controlado y motorizado en Carolina del Norte. Su aparato Flyer I fue el inicio de la aviación moderna.</p>
-        <img src="wright-flyer-smithsonian.jpg" alt="Wright Flyer en el Museo Smithsonian">
-        <p>El Wright Flyer original se conserva en el Museo Smithsonian como hito histórico de la ingeniería.</p>
-        
-        <h2>Era dorada y la aviación comercial</h2>
-        <img src="lindbergh-spirit-of-st-louis.jpg" alt="Charles Lindbergh y el Spirit of St. Louis">
-        <p>Charles Lindbergh cruzó el Atlántico en 1927 en el Spirit of St. Louis, demostrando el alcance global de la aviación.</p>
-        <img src="boeing707-twa.jpg" alt="Boeing 707 en vuelo">
-        <img src="boeing707-air-india.jpg" alt="Boeing 707 Air India">
-        <p>El Boeing 707 marcó la era del reactor comercial desde los años 50.</p>
+  <header>
+    <h1>Historia de la Aviación</h1>
+    <p>Un viaje visual desde los pioneros hasta la era moderna</p>
+  </header>
 
-        <h2>Avances bélicos y tecnológicos</h2>
-        <img src="spitfire-ww2.jpg" alt="Supermarine Spitfire">
-        <img src="p51-mustang.jpg" alt="P-51 Mustang">
-        <p>La Segunda Guerra Mundial aceleró la tecnología aérea, dando origen a cazas icónicos como el Spitfire y el Mustang.</p>
+  <main>
+    <article class="card">
+      <div class="grid" role="region" aria-labelledby="pioneros-title">
+        <section>
+          <h2 id="pioneros-title">Los primeros pioneros</h2>
+          <p class="lead">Innovación, ensayo y error: aquí nacieron los conceptos de control, sustentación y propulsión que hicieron posible el vuelo humano.</p>
 
-        <h2>La era supersónica</h2>
-        <img src="concorde-airfrance.jpg" alt="Concorde Air France">
-        <img src="concorde-aterrizando.jpg" alt="Concorde aterrizando">
-        <p>El Concorde brilló como símbolo del transporte supersónico comercial.</p>
+          <figure>
+            <img src="https://example.com/wright-flyer.jpg" alt="Wright Flyer en su primer vuelo en Kitty Hawk" loading="lazy">
+            <figcaption><strong>1903</strong> Primeros vuelos de los hermanos Wright — fotografía histórica, crédito: colección histórica.</figcaption>
+          </figure>
 
-        <h2>Gigantes modernos y sostenibilidad</h2>
-        <img src="airbus-a380.jpg" alt="Airbus A380">
-        <p>El Airbus A380 es el avión de pasajeros más grande de la historia, con capacidad para más de 800 viajeros.</p>
-        <img src="dreamliner-compuestos.jpg" alt="Materiales del Boeing 787 Dreamliner">
-        <img src="dreamliner-vuelo.jpg" alt="Boeing 787 Dreamliner en vuelo">
-        <img src="dreamliner-fabrica.jpg" alt="Línea de ensamblaje del Boeing 787">
-        <p>El Dreamliner revolucionó la eficiencia con sus materiales avanzados y nuevas tecnologías.</p>
-        <img src="aeropuerto-actual.jpg" alt="Aeropuerto moderno">
-        <img src="timeline-aviacion.jpg" alt="Evolución cronológica de la aviación">
+          <p class="meta">Breve texto complementario sobre los experimentos con planeadores, el túnel de viento y el desarrollo del control aerodinámico.</p>
+        </section>
 
-        <div class="timeline">
-            <h3>Cronología de hitos</h3>
+        <aside>
+          <h3>Cronología de hitos</h3>
+          <div class="timeline" aria-hidden="false">
             <ul>
-                <li>1903: Primer vuelo de los hermanos Wright</li>
-                <li>1927: Lindbergh cruza el Atlántico</li>
-                <li>1939-1945: Avances de la aviación en la Segunda Guerra Mundial</li>
-                <li>1958: Reactor Boeing 707</li>
-                <li>1969: Primer vuelo del Concorde</li>
-                <li>2005: Airbus A380</li>
-                <li>2009: Boeing 787 Dreamliner</li>
+              <li>1903: Primer vuelo de los hermanos Wright</li>
+              <li>1927: Lindbergh cruza el Atlántico</li>
+              <li>1939–1945: Avances acelerados en la Segunda Guerra Mundial</li>
+              <li>1958: Entrada en servicio del reactor comercial Boeing 707</li>
+              <li>1969: Primer vuelo del Concorde</li>
+              <li>2005: Entrada en servicio del Airbus A380</li>
+              <li>2009: Boeing 787 Dreamliner</li>
             </ul>
-        </div>
+          </div>
+        </aside>
+      </div>
+    </article>
 
-        <p class="credits">Texto original y estructura generados por IA.<br>
-        Imágenes históricas adaptadas a título referencial (sustituye los nombres de archivo por tus imágenes descargadas).</p>
-    </section>
+    <article class="card">
+      <h2>Era dorada y la aviación comercial</h2>
+      <p class="lead">De los vuelos pioneros a rutas transoceánicas que conectaron continentes y culturas.</p>
+
+      <figure>
+        <img src="https://example.com/lindbergh-spirit.jpg" alt="Charles Lindbergh junto al Spirit of St. Louis" loading="lazy">
+        <figcaption><strong>1927</strong> Charles Lindbergh y el Spirit of St. Louis — primer cruce transatlántico en solitario.</figcaption>
+      </figure>
+
+      <div class="gallery" aria-label="Galería de aviones comerciales históricos">
+        <figure>
+          <img src="https://example.com/boeing707-twa.jpg" alt="Boeing 707 en vuelo" loading="lazy">
+          <figcaption>Boeing 707 — inicio de la era del reactor comercial.</figcaption>
+        </figure>
+        <figure>
+          <img src="https://example.com/a380.jpg" alt="Airbus A380 en aproximación" loading="lazy">
+          <figcaption>Airbus A380 — transporte de alta capacidad.</figcaption>
+        </figure>
+        <figure>
+          <img src="https://example.com/dreamliner.jpg" alt="Boeing 787 Dreamliner en vuelo" loading="lazy">
+          <figcaption>Boeing 787 Dreamliner — materiales compuestos y eficiencia.</figcaption>
+        </figure>
+      </div>
+    </article>
+
+    <article class="card">
+      <h2>Avances bélicos y tecnológicos</h2>
+      <p class="lead">La Segunda Guerra Mundial y la posguerra impulsaron motores, aerodinámica y producción en masa para la aviación militar y civil.</p>
+
+      <div class="gallery" aria-hidden="false">
+        <figure>
+          <img src="https://example.com/spitfire.jpg" alt="Supermarine Spitfire en exhibición" loading="lazy">
+          <figcaption>Supermarine Spitfire — caza británico emblemático.</figcaption>
+        </figure>
+        <figure>
+          <img src="https://example.com/p51-mustang.jpg" alt="North American P-51 Mustang" loading="lazy">
+          <figcaption>P-51 Mustang — caza de escolta de largo alcance.</figcaption>
+        </figure>
+      </div>
+
+      <p class="meta">Texto complementario que explica cómo la guerra aceleró la innovación en motores, aviónica y materiales.</p>
+    </article>
+
+    <article class="card">
+      <h2>La era supersónica</h2>
+      <figure>
+        <img src="https://example.com/concorde-airfrance.jpg" alt="Concorde de Air France en vuelo" loading="lazy">
+        <figcaption>Concorde — transporte comercial supersónico.</figcaption>
+      </figure>
+      <p class="meta">El Concorde simbolizó el avance hacia la aviación de alta velocidad, con un legado técnico y cultural importante.</p>
+    </article>
+
+    <article class="card">
+      <h2>Gigantes modernos y sostenibilidad</h2>
+      <p class="lead">Hoy la aviación busca equilibrio entre capacidad y menor impacto ambiental mediante nuevos diseños, combustibles y optimización operativa.</p>
+
+      <figure>
+        <img src="https://example.com/modern-airport.jpg" alt="Aeropuerto moderno con terminales y aeronaves" loading="lazy">
+        <figcaption>Infraestructura y operaciones: hubs globales y nuevas tecnologías en tierra.</figcaption>
+      </figure>
+
+      <p class="credits">Texto original y estructura mejorados; reemplaza las URLs de ejemplo por tus imágenes descargadas o enlaces públicos. Añade créditos y licencias en cada figcaption si usas material con derechos.</p>
+    </article>
+  </main>
 </body>
 </html>
