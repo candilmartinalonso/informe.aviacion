@@ -2,239 +2,72 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Historia de la Aviación - De los Pioneros al Futuro</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <title>Historia de la Aviación</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(133deg, #283E51 0%, #485563 100%);
-            min-height: 100vh;
-        }
-        .glass {
-            background: rgba(255, 255, 255, 0.77);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
-            backdrop-filter: blur(14px);
-        }
-        .floating {
-            animation: float 4s ease-in-out infinite;
-        }
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-18px); }
-        }
-        .fadeup {
-            opacity: 0;
-            animation: fadeUp .8s forwards;
-        }
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(32px);}
-            to { opacity: 1; transform: translateY(0);}
-        }
-        .timeline-dot {
-            width: 18px; height: 18px;
-            background: linear-gradient(120deg,#48c6ef,#6f86d6);
-            border: 4px solid white;
-            border-radius: 50%; top: -8px; position: absolute;
-            animation: dotPulse 1.6s infinite;
-        }
-        @keyframes dotPulse {
-            0%,100%{ box-shadow:0 0 0 0 rgba(104,172,247,0.4);}
-            50%{ box-shadow:0 0 24px 6px rgba(104,172,247,0.35);}
-        }
+        body { font-family: Arial, sans-serif; background: #f8f9fa; margin: 0; padding: 0; }
+        header { background: #134374; color: #fff; padding: 24px 0; text-align: center; }
+        section { max-width: 800px; margin: 32px auto; background: #fff; border-radius: 6px; box-shadow: 0 2px 10px #ccc; padding: 32px; }
+        h1, h2, h3 { color: #134374; }
+        img { max-width: 100%; margin: 12px 0; border-radius: 3px; }
+        .timeline { background: #e3e7ee; border-radius: 5px; padding: 16px; margin: 24px 0; }
+        .credits { color: #888; font-size: 13px; margin-top: 32px; }
     </style>
-    <script>
-        // Animación reveal al hacer scroll
-        document.addEventListener('DOMContentLoaded', () => {
-            const observer = new IntersectionObserver(entries => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) entry.target.classList.add('fadeup');
-                });
-            });
-            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-        });
-    </script>
 </head>
-<body class="antialiased">
-
-    <!-- Encabezado Principal -->
-    <header class="bg-gradient-to-r from-blue-950 via-sky-900 to-indigo-900 shadow-2xl sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 py-10 text-center">
-            <h1 class="text-5xl md:text-7xl font-extrabold text-white tracking-tight drop-shadow-xl floating">
-                ✈️ Historia de la Aviación
-            </h1>
-            <p class="text-2xl md:text-3xl text-blue-200 mt-5 font-light slide-up fadeup">
-                Viaja a través del tiempo y descubre la conquista del cielo en cinco fascinantes etapas.
-            </p>
-        </div>
+<body>
+    <header>
+        <h1>Historia de la Aviación</h1>
+        <p>Un viaje visual desde los pioneros hasta la era moderna</p>
     </header>
+    <section>
+        <h2>Los primeros pioneros</h2>
+        <img src="hermanos-wright-vuelo1913.jpg" alt="Hermanos Wright Primer Vuelo">
+        <p>El 17 de diciembre de 1903, los hermanos Wright realizaron el primer vuelo controlado y motorizado en Carolina del Norte. Su aparato Flyer I fue el inicio de la aviación moderna.</p>
+        <img src="wright-flyer-smithsonian.jpg" alt="Wright Flyer en el Museo Smithsonian">
+        <p>El Wright Flyer original se conserva en el Museo Smithsonian como hito histórico de la ingeniería.</p>
+        
+        <h2>Era dorada y la aviación comercial</h2>
+        <img src="lindbergh-spirit-of-st-louis.jpg" alt="Charles Lindbergh y el Spirit of St. Louis">
+        <p>Charles Lindbergh cruzó el Atlántico en 1927 en el Spirit of St. Louis, demostrando el alcance global de la aviación.</p>
+        <img src="boeing707-twa.jpg" alt="Boeing 707 en vuelo">
+        <img src="boeing707-air-india.jpg" alt="Boeing 707 Air India">
+        <p>El Boeing 707 marcó la era del reactor comercial desde los años 50.</p>
 
-    <!-- Línea de Tiempo Mejorada -->
-    <section class="py-10 px-3">
-        <div class="max-w-5xl mx-auto relative">
-            <div class="timeline-line relative mx-auto h-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl mb-2">
-                <div class="timeline-dot" style="left: 3%;"></div>
-                <div class="timeline-dot" style="left: 19%;"></div>
-                <div class="timeline-dot" style="left: 40%;"></div>
-                <div class="timeline-dot" style="left: 63%;"></div>
-                <div class="timeline-dot" style="left: 93%;"></div>
-            </div>
-            <div class="flex justify-between text-white font-bold mt-2 text-xs md:text-lg select-none">
-                <span>1903-1918 Pioneros</span>
-                <span>1919-1945 Guerras Mundiales</span>
-                <span>1946-1970 Era Dorada</span>
-                <span>1971-2000 Modernidad</span>
-                <span>2001-𝚑𝚘𝚢 Futuro</span>
-            </div>
+        <h2>Avances bélicos y tecnológicos</h2>
+        <img src="spitfire-ww2.jpg" alt="Supermarine Spitfire">
+        <img src="p51-mustang.jpg" alt="P-51 Mustang">
+        <p>La Segunda Guerra Mundial aceleró la tecnología aérea, dando origen a cazas icónicos como el Spitfire y el Mustang.</p>
+
+        <h2>La era supersónica</h2>
+        <img src="concorde-airfrance.jpg" alt="Concorde Air France">
+        <img src="concorde-aterrizando.jpg" alt="Concorde aterrizando">
+        <p>El Concorde brilló como símbolo del transporte supersónico comercial.</p>
+
+        <h2>Gigantes modernos y sostenibilidad</h2>
+        <img src="airbus-a380.jpg" alt="Airbus A380">
+        <p>El Airbus A380 es el avión de pasajeros más grande de la historia, con capacidad para más de 800 viajeros.</p>
+        <img src="dreamliner-compuestos.jpg" alt="Materiales del Boeing 787 Dreamliner">
+        <img src="dreamliner-vuelo.jpg" alt="Boeing 787 Dreamliner en vuelo">
+        <img src="dreamliner-fabrica.jpg" alt="Línea de ensamblaje del Boeing 787">
+        <p>El Dreamliner revolucionó la eficiencia con sus materiales avanzados y nuevas tecnologías.</p>
+        <img src="aeropuerto-actual.jpg" alt="Aeropuerto moderno">
+        <img src="timeline-aviacion.jpg" alt="Evolución cronológica de la aviación">
+
+        <div class="timeline">
+            <h3>Cronología de hitos</h3>
+            <ul>
+                <li>1903: Primer vuelo de los hermanos Wright</li>
+                <li>1927: Lindbergh cruza el Atlántico</li>
+                <li>1939-1945: Avances de la aviación en la Segunda Guerra Mundial</li>
+                <li>1958: Reactor Boeing 707</li>
+                <li>1969: Primer vuelo del Concorde</li>
+                <li>2005: Airbus A380</li>
+                <li>2009: Boeing 787 Dreamliner</li>
+            </ul>
         </div>
+
+        <p class="credits">Texto original y estructura generados por IA.<br>
+        Imágenes históricas adaptadas a título referencial (sustituye los nombres de archivo por tus imágenes descargadas).</p>
     </section>
-
-    <!-- Secciones Históricas -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-20">
-
-        <!-- ERA 1 -->
-        <section class="glass rounded-2xl p-7 shadow-xl grid md:grid-cols-2 gap-10 items-center reveal">
-            <div>
-                <h2 class="text-4xl font-extrabold text-blue-800 mb-4">🛩️ Pioneros de la Aviación (1903-1918)</h2>
-                <ul class="list-disc ml-5 text-gray-700 text-lg font-light mb-4">
-                    <li>Hermanos Wright: Primer vuelo controlado a motor (1903, <strong>Wright Flyer</strong>).</li>
-                    <li>Alberto Santos Dumont vuela el 14-bis en París (1906).</li>
-                    <li>Louis Blériot cruza el Canal de la Mancha (1909).</li>
-                    <li>Raymonde de Laroche: primera mujer piloto licenciada.</li>
-                </ul>
-                <p class="text-gray-600 text-md mb-3">El desarrollo explosivo empezó con la Primera Guerra Mundial, que vio la aparición de los primeros cazas, bombarderos y el concepto de guerra aérea.</p>
-            </div>
-            <div class="relative">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Wrightflyer.jpg" alt="Wright Flyer" class="rounded-2xl shadow-lg w-full h-64 object-cover floating">
-                <span class="block pt-2 text-center text-sm text-blue-500">El legendario Wright Flyer (1903)</span>
-            </div>
-        </section>
-
-        <!-- ERA 2 -->
-        <section class="glass rounded-2xl p-7 shadow-xl grid md:grid-cols-2 gap-10 items-center md:row-auto reveal">
-            <div class="order-2 md:order-1">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/8/81/SopwithCamel.jpg" alt="Sopwith Camel" class="rounded-2xl shadow-lg w-full h-64 object-cover floating">
-                <span class="block pt-2 text-center text-sm text-orange-600">Sopwith Camel, ícono de la I Guerra Mundial</span>
-            </div>
-            <div class="order-1 md:order-2">
-                <h2 class="text-4xl font-extrabold text-orange-700 mb-4">⚔️ Aviación en las Guerras Mundiales (1919-1945)</h2>
-                <ul class="list-disc ml-5 text-gray-700 text-lg font-light mb-4">
-                    <li>Charles Lindbergh cruza el Atlántico (1927).</li>
-                    <li>Amelia Earhart, hazañas femeninas pioneras (1932).</li>
-                    <li>Avances: motores radiales, radar, presurización de cabina.</li>
-                    <li>Papel clave de los <strong>cazas Spitfire y Mustang</strong> en la II GM.</li>
-                </ul>
-                <p class="text-gray-600 text-md mb-3">El conflicto aceleró la tecnología: bombarderos pesados (B-29), jets iniciales (Messerschmitt Me 262).</p>
-            </div>
-        </section>
-
-        <!-- ERA 3 -->
-        <section class="glass rounded-2xl p-7 shadow-xl grid md:grid-cols-2 gap-10 items-center reveal">
-            <div>
-                <h2 class="text-4xl font-extrabold text-fuchsia-900 mb-4">🚀 Era Dorada y Comercial (1946-1970)</h2>
-                <ul class="list-disc ml-5 text-gray-700 text-lg font-light mb-4">
-                    <li>Primer vuelo supersónico: <strong>Chuck Yeager en Bell X-1</strong> (1947).</li>
-                    <li>Primer jet comercial: <strong>De Havilland Comet</strong> (1952).</li>
-                    <li>Boeing 707 y DC-8: nacimiento de la aviación comercial masiva.</li>
-                    <li>El gigantesco Boeing 747 “Jumbo Jet” (1970).</li>
-                </ul>
-                <p class="text-gray-600 text-md mb-3">Los aeropuertos modernos emergen, el mundo se conecta en tiempo récord.</p>
-            </div>
-            <div>
-                <img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Boeing_707-321B_Pan_Am_Freer.jpg" alt="Boeing 707 Pan Am" class="rounded-2xl shadow-lg w-full h-64 object-cover floating">
-                <span class="block pt-2 text-center text-sm text-fuchsia-700">Boeing 707, un ícono global</span>
-            </div>
-        </section>
-
-        <!-- ERA 4 -->
-        <section class="glass rounded-2xl p-7 shadow-xl grid md:grid-cols-2 gap-10 items-center md:row-auto reveal">
-            <div class="order-2 md:order-1">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/a/ad/Concorde_flypast_1986.jpg" alt="Concorde" class="rounded-2xl shadow-lg w-full h-64 object-cover floating">
-                <span class="block pt-2 text-center text-sm text-cyan-600">Concorde: el mito supersónico (1976-2003)</span>
-            </div>
-            <div class="order-1 md:order-2">
-                <h2 class="text-4xl font-extrabold text-cyan-800 mb-4">🌏 Modernidad y Globalización (1971-2000)</h2>
-                <ul class="list-disc ml-5 text-gray-700 text-lg font-light mb-4">
-                    <li>Nuevos materiales y “fly-by-wire” revolucionan la industria.</li>
-                    <li>Airbus y Boeing: el 777, A320 y A340 transforman eficiencia y seguridad.</li>
-                    <li>Avances en navegación satelital y control de tráfico aéreo.</li>
-                    <li>Accesibilidad global: el turismo aéreo explota.</li>
-                </ul>
-            </div>
-        </section>
-
-        <!-- ERA 5 -->
-        <section class="glass rounded-2xl p-7 shadow-xl grid md:grid-cols-2 gap-10 items-center reveal">
-            <div>
-                <h2 class="text-4xl font-extrabold text-pink-900 mb-4">🤖 Futuro y Sostenibilidad (2001-Presente)</h2>
-                <ul class="list-disc ml-5 text-gray-700 text-lg font-light mb-4">
-                    <li>Aviones de materiales compuestos: <strong>Boeing 787 Dreamliner, Airbus A350</strong>.</li>
-                    <li>Investigación en combustibles alternativos y aviación eléctrica.</li>
-                    <li>Avance del software, IA y vuelos autónomos.</li>
-                    <li>SpaceX, vuelos suborbitales y el auge del turismo espacial.</li>
-                </ul>
-                <p class="text-gray-700 text-md mb-3">El sector busca <span class="font-semibold text-green-700">cero emisiones</span> y adopta energía renovable.</p>
-            </div>
-            <div>
-                <img src="https://upload.wikimedia.org/wikipedia/commons/7/72/Airbus_A350-900_%282019%2C_Paris%29.jpg" alt="Airbus A350 ultramoderno" class="rounded-2xl shadow-lg w-full h-64 object-cover floating">
-                <span class="block pt-2 text-center text-sm text-pink-700">Airbus A350: eficiencia y confort del futuro</span>
-            </div>
-        </section>
-
-        <!-- DATOS Y CURIOSIDADES -->
-        <section class="bg-white rounded-2xl glass py-12 px-8 my-10 text-center reveal">
-            <h2 class="text-3xl md:text-4xl font-extrabold mb-7 text-gradient bg-gradient-to-r from-cyan-500 to-purple-900 bg-clip-text text-transparent">📊 Datos y Curiosidades</h2>
-            <div class="grid md:grid-cols-6 gap-5">
-                <div class="p-6 rounded-lg border-2 border-blue-200 bg-blue-50 shadow hover:scale-105 transition-all">
-                    <div class="text-5xl font-extrabold text-blue-600 mb-1">+120</div>
-                    <div class="text-gray-700 font-bold">Años de aviación</div>
-                </div>
-                <div class="p-6 rounded-lg border-2 border-pink-200 bg-pink-50 shadow hover:scale-105 transition-all">
-                    <div class="text-5xl font-extrabold text-pink-600 mb-1">4.5B</div>
-                    <div class="text-gray-700 font-bold">Pasajeros anuales</div>
-                </div>
-                <div class="p-6 rounded-lg border-2 border-green-200 bg-green-50 shadow hover:scale-105 transition-all">
-                    <div class="text-5xl font-extrabold text-green-600 mb-1">80K</div>
-                    <div class="text-gray-700 font-bold">Vuelos diarios</div>
-                </div>
-                <div class="p-6 rounded-lg border-2 border-purple-200 bg-purple-50 shadow hover:scale-105 transition-all">
-                    <div class="text-5xl font-extrabold text-purple-600 mb-1">26K</div>
-                    <div class="text-gray-700 font-bold">Aeronaves comerciales</div>
-                </div>
-                <div class="p-6 rounded-lg border-2 border-orange-200 bg-orange-50 shadow hover:scale-105 transition-all">
-                    <div class="text-5xl font-extrabold text-orange-500 mb-1">900</div>
-                    <div class="text-gray-700 font-bold">km/h promedio</div>
-                </div>
-                <div class="p-6 rounded-lg border-2 border-red-200 bg-red-50 shadow hover:scale-105 transition-all">
-                    <div class="text-5xl font-extrabold text-red-600 mb-1">37000</div>
-                    <div class="text-gray-700 font-bold">Aerolíneas globales</div>
-                </div>
-            </div>
-            <div class="grid md:grid-cols-3 gap-6 mt-8">
-                <div class="text-lg"><span class="font-bold">El vuelo más largo regular:</span> Singapur-NY, 19h ⏱️</div>
-                <div class="text-lg"><span class="font-bold">El avión más grande:</span> Antonov An-225 Mriya</div>
-                <div class="text-lg"><span class="font-bold">La torre de control más alta:</span> Jeddah, Arabia Saudita (136m)</div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- Pie de página modernizado -->
-    <footer class="bg-gradient-to-r from-gray-900 to-indigo-900 text-white py-16 mt-20">
-        <div class="max-w-7xl mx-auto px-4 py-2 text-center">
-            <h3 class="text-2xl md:text-3xl font-bold mb-6">✨ El Futuro del Vuelo Humano</h3>
-            <p class="text-gray-300 text-lg md:max-w-2xl mx-auto leading-relaxed">La aviación nunca deja de reinventarse. Nos acercamos a la era de aviones autónomos, propulsión limpia y viajes espaciales para el turismo. El cielo ya no es el límite, ¡es solo el principio!</p>
-            <div class="mt-10 flex flex-wrap justify-center gap-7">
-                <img src="https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?fit=crop&w=260&q=80" class="rounded-xl w-44 h-24 object-cover floating" alt="">
-                <img src="https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?fit=crop&w=260&q=80" class="rounded-xl w-44 h-24 object-cover floating" alt="">
-                <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?fit=crop&w=260&q=80" class="rounded-xl w-44 h-24 object-cover floating" alt="">
-            </div>
-            <div class="mt-8 text-sm text-gray-400">
-                <p>© 2025 Historia de la Aviación — Diseño renovado by <b>Comet GPT</b></p>
-            </div>
-        </div>
-    </footer>
 </body>
 </html>
