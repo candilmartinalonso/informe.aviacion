@@ -1,570 +1,106 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Historia Interactiva de la Aviación</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&family=Oswald:wght@500&display=swap" rel="stylesheet">
-    <!-- Chosen Palette: Slate Gray & Amber -->
-    <style>
-        body {
-            font-family: 'Roboto Condensed', sans-serif;
-            background-color: #0d121c; /* Fondo más oscuro */
-            color: #d1d5db;
-        }
-        .timeline-item-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            background-color: #1f2937;
-            border: 1px solid #374151;
-        }
-        .timeline-item-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.6);
-            border-color: #f59e0b;
-        }
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background-color: #f59e0b;
-            border: 4px solid #374151;
-            top: 20px;
-            left: -10px;
-            z-index: 1;
-            transition: all 0.3s;
-        }
-        .timeline-item:hover::before {
-             transform: scale(1.2);
-        }
-        .era-title {
-            font-family: 'Oswald', sans-serif;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-        }
-        .lesson-card {
-            background-color: #2c3847; /* Ligeramente más claro que el fondo de la tarjeta */
-            border-left: 4px solid #f59e0b;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-        .lesson-card:hover {
-            background-color: #3e4b5a;
-        }
-        .chart-container {
-            position: relative;
-            width: 100%;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            height: 300px;
-            max-height: 400px;
-        }
-        /* Animaciones de entrada */
-        .animate-entry {
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInSlide 0.8s ease-out forwards;
-        }
-        @keyframes fadeInSlide {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        /* Contenido Colapsable */
-        .lesson-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease-out, padding 0.4s ease-out;
-        }
-        .lesson-content.expanded {
-            max-height: 500px; 
-            padding-top: 1rem;
-        }
-        /* Tab Styles */
-        .tab-button {
-            padding: 1rem 1.5rem;
-            font-weight: 700;
-            color: #9ca3af; 
-            transition: all 0.3s;
-            border-bottom: 3px solid transparent;
-            margin-bottom: -1px; 
-        }
-        .tab-button:hover {
-            color: #fff;
-        }
-        .tab-button.active {
-            color: #f59e0b; 
-            border-bottom-color: #f59e0b;
-            background-color: #1f2937;
-        }
-        .tab-content {
-            animation: fadeIn 0.5s ease-out;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(5px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Historia Interactiva de la Aviación</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&family=Oswald:wght@500&display=swap" rel="stylesheet" />
+  <style>
+    body { font-family: 'Roboto Condensed', sans-serif; background-color: #0d121c; color: #d1d5db; }
+    .timeline-item-card { transition: transform 0.3s ease, box-shadow 0.3s ease; background-color: #1f2937; border: 1px solid #374151; }
+    .timeline-item-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.6); border-color: #f59e0b; }
+    .timeline-item::before { content: ''; position: absolute; width: 20px; height: 20px; border-radius: 50%; background-color: #f59e0b; border: 4px solid #374151; top: 20px; left: -10px; z-index: 1; transition: all 0.3s; }
+    .timeline-item:hover::before { transform: scale(1.2); }
+    .era-title { font-family: 'Oswald', sans-serif; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+    .lesson-card { background-color: #2c3847; border-left: 4px solid #f59e0b; transition: all 0.3s ease; cursor: pointer; }
+    .lesson-card:hover { background-color: #3e4b5a; }
+    .chart-container { position: relative; width: 100%; max-width: 600px; height: 340px; }
+  </style>
 </head>
-<body class="antialiased">
-
-    <!-- Encabezado -->
-    <header class="bg-gray-900 text-white text-center py-12 px-4">
-        <h1 class="text-5xl md:text-7xl font-bold era-title text-amber-400">La Conquista de los Cielos</h1>
-        <p class="mt-4 text-xl text-gray-300 max-w-3xl mx-auto">Una crónica interactiva de los hitos, las tragedias y las innovaciones que definieron la aviación.</p>
-        
-        <!-- Contador Dinámico -->
-        <div class="mt-6 p-4 inline-block bg-gray-800 rounded-xl shadow-lg border border-gray-700 animate-pulse-once">
-            <span class="text-2xl text-gray-400 font-semibold block">Años de Evolución (desde 1903):</span>
-            <span id="year-counter" class="text-6xl font-bold text-amber-500 block">0</span>
-        </div>
-    </header>
-
-    <!-- Contenedor principal de la línea de tiempo y las pestañas -->
-    <div class="container mx-auto p-4 md:p-8">
-        
-        <!-- Tab Navigation -->
-        <div class="flex border-b border-gray-700 max-w-6xl mx-auto mt-8 bg-gray-900 rounded-t-lg shadow-xl">
-            <button class="tab-button active rounded-tl-lg" data-tab="timeline">Línea de Tiempo Histórica</button>
-            <button class="tab-button rounded-tr-lg" data-tab="analysis">Análisis, Gráficos y Futuro</button>
-        </div>
-
-        <!-- Tab Content Container -->
-        <div class="bg-gray-800 p-4 md:p-8 rounded-b-lg rounded-tr-lg shadow-2xl max-w-6xl mx-auto">
-            
-            <!-- Contenido de la Línea de Tiempo Histórica -->
-            <div id="tab-timeline" class="tab-content active">
-                <div class="relative border-l-2 border-gray-700 ml-4 md:ml-0">
-
-                    <!-- Era 1: Pioneros -->
-                    <div class="mb-12 md:ml-8 timeline-item animate-entry" style="animation-delay: 0.1s;">
-                        <div class="p-6 timeline-item-card rounded-lg shadow-xl">
-                            <span class="text-sm font-semibold text-amber-400">Pre-1903</span>
-                            <h2 class="text-3xl font-bold era-title mt-1">1. Los Pioneros y el Cimiento Científico</h2>
-                            <p class="mt-4 text-gray-400">Esta etapa se basó en la teoría, los planeadores y las pruebas de ensayo y error, sentando las bases de la sustentación y el control.</p>
-
-                             <img src="https://placehold.co/600x200/58636E/FFFFFF?text=Diseños+de+Da+Vinci+y+Cayley" 
-                                 alt="Diseños de vuelo de Leonardo da Vinci y Sir George Cayley" 
-                                 class="w-full h-auto rounded-lg my-4 shadow-md object-cover">
-                            
-                            <div class="mt-6 space-y-6"> 
-                                <div>
-                                    <h3 class="font-bold text-lg mb-2 text-white">Hitos Clave</h3>
-                                    <ul class="list-disc list-inside space-y-1"> 
-                                        <li>~1000 d.C. - Primer Vuelo Documentado: El monje Eilmer de Malmesbury intenta volar usando un planeador rudimentario.</li>
-                                        <li>1485 - Bases Teóricas: Leonardo da Vinci diseña máquinas voladoras, incluyendo el ornitóptero y el helicóptero, definiendo el principio de la hélice.</li>
-                                        <li>1783 - Vuelo Vertical: Los Hermanos Montgolfier logran el primer vuelo tripulado en un globo aerostático (aire caliente).</li>
-                                        <li>1809 - Las 4 Fuerzas: Sir George Cayley publica "On Aerial Navigation," estableciendo la ciencia del vuelo (peso, sustentación, empuje y resistencia).</li>
-                                        <li>1849 - Primer Planeador Triplano: Cayley construye y prueba un planeador lo suficientemente grande como para llevar a un niño.</li>
-                                        <li>1890s - Vuelo Controlado: Otto Lilienthal realiza más de 2,000 vuelos, estandarizando el diseño de planeadores y el control de peso.</li>
-                                        <li>1896 - Samuel Langley: Desarrolla modelos de aviones no tripulados impulsados por vapor que logran vuelos cortos, demostrando la posibilidad de la propulsión.</li>
-                                    </ul>
-                                </div>
-                                <div class="lesson-card p-4 rounded-md" data-lesson-id="lesson1">
-                                    <div class="flex justify-between items-center">
-                                        <h3 class="font-bold text-lg text-amber-400">Lección Crítica: Muerte de Lilienthal (1896)</h3>
-                                        <span class="text-amber-400 text-xl font-mono transition-transform duration-300 transform rotate-0">+</span>
-                                    </div>
-                                    <div id="lesson1-content" class="lesson-content">
-                                        <p class="mt-2 text-sm">Su fatal accidente subrayó la necesidad urgente de un control aerodinámico tridimensional activo (alerones o torsión del ala) más allá del simple desplazamiento de peso del piloto. También evidenció que la relación potencia/peso de los motores de la época era insuficiente para el despegue controlado, lo que sería clave para los Wright.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Era 2: El Avión -->
-                    <div class="mb-12 md:ml-8 timeline-item animate-entry" style="animation-delay: 0.3s;">
-                        <div class="p-6 timeline-item-card rounded-lg shadow-xl">
-                            <span class="text-sm font-semibold text-amber-400">1903 - 1930</span>
-                            <h2 class="text-3xl font-bold era-title mt-1">2. El Control y el Nacimiento del Avión</h2>
-                            <p class="mt-4 text-gray-400">Logrado el vuelo motorizado, la atención se centró en la fiabilidad, la velocidad y la capacidad de cruzar grandes distancias.</p>
-                             
-                            <img src="https://placehold.co/600x300/F59E0B/000000?text=Wright+Flyer+en+Kitty+Hawk" 
-                                 alt="Imagen del Wright Flyer 1903" 
-                                 class="w-full h-auto rounded-lg my-4 shadow-md object-cover">
-                                 
-                             <div class="mt-6 space-y-6"> 
-                                <div>
-                                    <h3 class="font-bold text-lg mb-2 text-white">Hitos Clave</h3>
-                                    <ul class="list-disc list-inside space-y-1">
-                                        <li>1903 - Kitty Hawk: Los Hermanos Wright logran el primer vuelo sostenido, controlado y propulsado utilizando la deformación del ala (wing warping).</li>
-                                        <li>1908 - Primer Accidente Fatal: El accidente de Thomas Selfridge como pasajero con Orville Wright, impulsa la necesidad de fiabilidad estructural.</li>
-                                        <li>1909 - Cruzando el Canal: Louis Blériot demuestra la viabilidad del transporte a distancia y la superioridad del diseño monoplano.</li>
-                                        <li>1914-1918 - Impacto de la Primera Guerra Mundial: El conflicto acelera el desarrollo tecnológico en masa de motores, fuselajes y entrenamiento.</li>
-                                        <li>1920 - Servicio de Correo Aéreo: Se establecen las primeras rutas postales regulares, generando ingresos y profesionalizando a los pilotos.</li>
-                                        <li>1927 - Vuelo Transatlántico: Charles Lindbergh cruza el Atlántico en solitario, inspirando una nueva era de inversión en la aviación civil.</li>
-                                    </ul>
-                                </div>
-                                <div class="lesson-card p-4 rounded-md" data-lesson-id="lesson2">
-                                    <div class="flex justify-between items-center">
-                                        <h3 class="font-bold text-lg text-amber-400">Lección Crítica: Fatiga de Motores (1920s)</h3>
-                                        <span class="text-amber-400 text-xl font-mono transition-transform duration-300 transform rotate-0">+</span>
-                                    </div>
-                                    <div id="lesson2-content" class="lesson-content">
-                                        <p class="mt-2 text-sm">Los constantes fallos mecánicos y estructurales impulsaron el desarrollo de instrumentación básica estandarizada (altímetro, indicador de velocidad, giróscopo) y la mejora drástica de la ingeniería de motores para asegurar la autonomía de vuelo.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Era 3: Edad de Oro -->
-                    <div class="mb-12 md:ml-8 timeline-item animate-entry" style="animation-delay: 0.5s;">
-                        <div class="p-6 timeline-item-card rounded-lg shadow-xl">
-                            <span class="text-sm font-semibold text-amber-400">1930 - 1950</span>
-                            <h2 class="text-3xl font-bold era-title mt-1">3. La Edad de Oro y la Seguridad Estructural</h2>
-                            <p class="mt-4 text-gray-400">La aviación civil despega, y la ingeniería se centra en construir aviones capaces de llevar a muchos pasajeros de forma rentable y segura.</p>
-                            
-                            <img src="https://placehold.co/600x300/1D4ED8/FFFFFF?text=Douglas+DC-3+Avión+Comercial" 
-                                 alt="Imagen del Douglas DC-3" 
-                                 class="w-full h-auto rounded-lg my-4 shadow-md object-cover">
-                                 
-                            <div class="mt-6 space-y-6">
-                                <div>
-                                    <h3 class="font-bold text-lg mb-2 text-white">Hitos Clave</h3>
-                                    <ul class="list-disc list-inside space-y-1">
-                                        <li>1930s - Cabina Presurizada: Avances en presurización permiten vuelos más altos, por encima de la meteorología adversa.</li>
-                                        <li>1935 - Douglas DC-3: El primer avión comercialmente rentable que estandarizó el diseño (ala baja, tren retráctil) y aceleró el transporte de pasajeros.</li>
-                                        <li>1939 - Dominando la Vertical: Igor Sikorsky sienta las bases del helicóptero moderno con el VS-300.</li>
-                                        <li>1939-1945 - Segunda Guerra Mundial: El conflicto impulsa la invención del radar, la navegación por radio y el desarrollo acelerado de los primeros motores a reacción.</li>
-                                        <li>1944 - Conferencia de Chicago: Se establecen los cimientos de la aviación civil internacional, llevando a la creación de la OACI (Organización de Aviación Civil Internacional).</li>
-                                        <li>1947 - Supersónico: Chuck Yeager rompe la barrera del sonido en el Bell X-1, abriendo el camino a la aviación de alta velocidad.</li>
-                                    </ul>
-                                </div>
-                                <div class="lesson-card p-4 rounded-md" data-lesson-id="lesson3">
-                                    <div class="flex justify-between items-center">
-                                        <h3 class="font-bold text-lg text-amber-400">Lección Crítica: Desastre del Hindenburg (1937)</h3>
-                                        <span class="text-amber-400 text-xl font-mono transition-transform duration-300 transform rotate-0">+</span>
-                                    </div>
-                                    <div id="lesson3-content" class="lesson-content">
-                                        <p class="mt-2 text-sm">El trágico incendio del dirigible Hindenburg afianzó la hegemonía del avión de ala fija como el futuro del transporte aéreo transatlántico debido a los problemas de seguridad inherentes al uso de hidrógeno y la vulnerabilidad de las aeronaves más ligeras que el aire.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Era 4: El Jet (Solo hito y lecciones, el gráfico se movió a la pestaña de Análisis) -->
-                    <div class="mb-12 md:ml-8 timeline-item animate-entry" style="animation-delay: 0.7s;">
-                        <div class="p-6 timeline-item-card rounded-lg shadow-xl">
-                            <span class="text-sm font-semibold text-amber-400">1950 - 1970</span>
-                            <h2 class="text-3xl font-bold era-title mt-1">4. La Era del Jet y la Fatiga del Metal</h2>
-                            <p class="mt-4 text-gray-400">El turborreactor permite vuelos más altos y rápidos, pero revela nuevos y peligrosos problemas en los materiales.</p>
-                            
-                            <img src="https://placehold.co/600x300/4F46E5/FFFFFF?text=De+Havilland+Comet+Primer+Jet" 
-                                 alt="Imagen del De Havilland Comet" 
-                                 class="w-full h-auto rounded-lg my-4 shadow-md object-cover">
-                                 
-                            <div class="mt-6 space-y-6">
-                                <div>
-                                    <h3 class="font-bold text-lg mb-2 text-white">Hitos Clave</h3>
-                                    <ul class="list-disc list-inside space-y-1">
-                                        <li>1952 - De Havilland Comet: El primer jet comercial, que redujo drásticamente los tiempos de viaje.</li>
-                                        <li>1958 - Boeing 707: Consolida y domina el mercado de pasajeros a reacción a nivel global.</li>
-                                        <li>1960s - Desarrollo del Navegador Inercial (INS): Sistema autónomo de navegación clave para vuelos transoceánicos.</li>
-                                        <li>1969 - Primer Vuelo del Boeing 747: Se inaugura la era de los aviones de fuselaje ancho (Wide-Body).</li>
-                                    </ul>
-                                </div>
-                                <div class="lesson-card p-4 rounded-md" data-lesson-id="lesson4">
-                                    <div class="flex justify-between items-center">
-                                        <h3 class="font-bold text-lg text-amber-400">Lección Crítica: Desastres del Comet (1954)</h3>
-                                        <span class="text-amber-400 text-xl font-mono transition-transform duration-300 transform rotate-0">+</span>
-                                    </div>
-                                    <div id="lesson4-content" class="lesson-content">
-                                        <p class="mt-2 text-sm">La desintegración en vuelo por la fatiga del metal y el ciclo de presurización originó la ciencia de la fatiga de materiales y el diseño de fuselajes con ventanas redondeadas, eliminando puntos de estrés en la estructura.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Contenido de Análisis, Gráficos y Futuro -->
-            <div id="tab-analysis" class="tab-content hidden">
-                 
-                 <!-- Gráfico de Velocidad (Movido de Era 4) -->
-                 <div class="mt-6 p-6 bg-gray-900 rounded-lg text-center shadow-inner">
-                    <h3 class="font-bold text-2xl text-amber-400 mb-2 era-title">Evolución de la Velocidad Máxima</h3>
-                    <p class="text-sm text-gray-400 mb-4">De los $109 \text{ km/h}$ del Wright Flyer a los $+2,000 \text{ km/h}$ del Concorde.</p>
-                    <div class="chart-container h-80">
-                        <canvas id="speedChart"></canvas>
-                    </div>
-                    <div class="mt-4 p-4 bg-gray-700 rounded-lg">
-                        <h4 class="font-semibold text-white">Visualización de las 4 Fuerzas de Vuelo</h4>
-                        <p class="text-sm text-gray-400 mb-2">Representación estática del equilibrio aerodinámico.</p>
-                        <div class="grid grid-cols-3 grid-rows-3 gap-2 text-center text-sm font-semibold h-48 relative">
-                            <div class="col-start-2 row-start-1 flex flex-col items-center justify-center text-green-400"><span>Sustentación</span><span class="text-2xl">↑</span></div>
-                            <div class="col-start-1 row-start-2 flex items-center justify-center text-red-400"><span>← Resistencia</span></div>
-                            <div class="col-start-2 row-start-2 flex items-center justify-center bg-amber-500/20 rounded-md text-white p-2 text-2xl font-bold border border-amber-500">AVIÓN</div>
-                            <div class="col-start-3 row-start-2 flex items-center justify-center text-green-400"><span>Empuje →</span></div>
-                            <div class="col-start-2 row-start-3 flex flex-col items-center justify-center text-red-400"><span>↓</span><span>Peso</span></div>
-                         </div>
-                    </div>
-                </div>
-
-                <!-- Era 5: Capacidad y Seguridad -->
-                <div class="mb-12 mt-8 timeline-item animate-entry" style="animation-delay: 0.9s;">
-                    <div class="p-6 timeline-item-card rounded-lg shadow-xl">
-                        <span class="text-sm font-semibold text-amber-400">1970 - Presente</span>
-                        <h2 class="text-3xl font-bold era-title mt-1">5. La Era de la Capacidad y la Seguridad en Cabina</h2>
-                        <p class="mt-4 text-gray-400">Los aviones de fuselaje ancho y la computarización obligan a centrarse en procedimientos, entrenamiento y sistemas.</p>
-                        
-                        <img src="https://placehold.co/600x300/F97316/FFFFFF?text=Boeing+747+Jumbo+Jet" 
-                             alt="Imagen del Boeing 747 Jumbo Jet" 
-                             class="w-full h-auto rounded-lg my-4 shadow-md object-cover">
-                                 
-                         <div class="mt-6 space-y-4">
-                            <h3 class="font-bold text-xl mb-2 text-white">Lecciones Críticas Globales</h3>
-                            <div class="lesson-card p-4 rounded-md" data-lesson-id="lesson5a">
-                                 <div class="flex justify-between items-center">
-                                    <h3 class="font-bold text-lg text-amber-400">Desastre de Tenerife (1977)</h3>
-                                    <span class="text-amber-400 text-xl font-mono transition-transform duration-300 transform rotate-0">+</span>
-                                </div>
-                                 <div id="lesson5a-content" class="lesson-content">
-                                    <p class="mt-2 text-sm">La colisión de dos $747$ fue el catalizador para el $\text{CRM}$ ($\text{Crew Resource Management}$), enfocándose en la comunicación clara y la gestión de recursos de equipo.</p>
-                                </div>
-                            </div>
-                            <div class="lesson-card p-4 rounded-md" data-lesson-id="lesson5d">
-                                <div class="flex justify-between items-center">
-                                    <h3 class="font-bold text-lg text-amber-400">Vuelo 800 de TWA (1996)</h3>
-                                    <span class="text-amber-400 text-xl font-mono transition-transform duration-300 transform rotate-0">+</span>
-                                </div>
-                                 <div id="lesson5d-content" class="lesson-content">
-                                    <p class="mt-2 text-sm">La explosión en el tanque de combustible central llevó a la regulación de los Sistemas de Inertización de Tanques de Combustible ($\text{FTIS}$).</p>
-                                </div>
-                            </div>
-                            
-                            <h3 class="font-bold text-lg mb-2 mt-6 text-amber-500">Accidentes Clave en Argentina</h3>
-
-                            <!-- ACCIDENTE DE ARGENTINA 1: VUELO 901 (1981) -->
-                            <div class="lesson-card p-4 rounded-md" data-lesson-id="lesson5e_arg1">
-                                <div class="flex justify-between items-center">
-                                    <h3 class="font-bold text-lg text-amber-400">Vuelo 901 de Austral, Río de la Plata (1981)</h3>
-                                    <span class="text-amber-400 text-xl font-mono transition-transform duration-300 transform rotate-0">+</span>
-                                </div>
-                                 <div id="lesson5e_arg1-content" class="lesson-content">
-                                    <p class="mt-2 text-sm">Pérdida de control durante la aproximación en tormenta severa sobre el Río de la Plata. Subrayó la necesidad de protocolos de meteorología de alta precisión y la importancia del entrenamiento de la tripulación en la gestión de turbulencia y cizalladura extrema.</p>
-                                </div>
-                            </div>
-
-                            <!-- ACCIDENTE DE ARGENTINA 2: VUELO 2553 (1997) -->
-                            <div class="lesson-card p-4 rounded-md" data-lesson-id="lesson5e_arg2">
-                                <div class="flex justify-between items-center">
-                                    <h3 class="font-bold text-lg text-amber-400">Vuelo 2553 de Austral (1997)</h3>
-                                    <span class="text-amber-400 text-xl font-mono transition-transform duration-300 transform rotate-0">+</span>
-                                </div>
-                                 <div id="lesson5e_arg2-content" class="lesson-content">
-                                    <p class="mt-2 text-sm">El accidente, causado por el fallo de la calefacción del tubo de Pitot, resultó en desorientación de la tripulación. Forzó una revisión profunda de los estándares de mantenimiento en Argentina y la rigurosidad de los procedimientos de investigación nacionales.</p>
-                                </div>
-                            </div>
-                            
-                            <!-- ACCIDENTE DE ARGENTINA 3: VUELO 3142 (1999) -->
-                            <div class="lesson-card p-4 rounded-md" data-lesson-id="lesson5e">
-                                <div class="flex justify-between items-center">
-                                    <h3 class="font-bold text-lg text-amber-400">Vuelo 3142 de LAPA, Aeroparque (1999)</h3>
-                                    <span class="text-amber-400 text-xl font-mono transition-transform duration-300 transform rotate-0">+</span>
-                                </div>
-                                 <div id="lesson5e-content" class="lesson-content">
-                                    <p class="mt-2 text-sm">Este desastre por despegue sin flaps extendidos y fallos en la alarma, subrayó la importancia crítica de la disciplina en cabina, el cumplimiento estricto de los procedimientos pre-vuelo y la necesidad de una supervisión regulatoria más rigurosa.</p>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="mt-8">
-                             <h3 class="font-bold text-lg mb-2 text-white">Hitos Tecnológicos</h3>
-                            <ul class="list-disc list-inside space-y-1">
-                                <li>1970 - Boeing 747 "Jumbo Jet": Inicia la era del fuselaje ancho.</li>
-                                <li>1988 - Airbus A320 y el Fly-by-Wire: Control de vuelo totalmente digital ($\text{Fly-by-Wire}$) y $\text{sidesticks}$.</li>
-                                <li>1990s - TCAS: Introducción obligatoria de sistemas de alerta de tráfico y evasión de colisión.</li>
-                                <li>2000s - ETOPS Avanzado: Permite a aviones bimotores volar rutas transoceánicas prolongadas ($\text{B787}$, $\text{A350}$), gracias a su fiabilidad.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Era 6: Futuro (Movido a la pestaña de Análisis) -->
-                <div class="mt-8 timeline-item animate-entry" style="animation-delay: 1.1s;">
-                    <div class="p-6 timeline-item-card rounded-lg shadow-xl">
-                        <span class="text-sm font-semibold text-amber-400">Futuro</span>
-                        <h2 class="text-3xl font-bold era-title mt-1">6. La Conciencia Ambiental y el Futuro</h2>
-                        <p class="mt-4 text-gray-400">La aviación actual está definida por la eficiencia, la automatización y la búsqueda de la sostenibilidad.</p>
-                        <img src="https://placehold.co/600x300/4CAF50/FFFFFF?text=eVTOLs+y+Combustibles+Sostenibles+(SAF)" 
-                             alt="Imagen de un eVTOL y combustible sostenible" 
-                             class="w-full h-auto rounded-lg my-4 shadow-md object-cover">
-                        <div class="mt-6">
-                            <h3 class="font-bold text-lg mb-2 text-white">Tendencias Actuales y Futuras</h3>
-                            <ul class="list-disc list-inside space-y-1">
-                               <li>Materiales Compuestos: Aviones como el $\text{B-787}$ utilizan más del $50\%$ de materiales compuestos.</li>
-                               <li>Propulsión Sostenible: Investigación en combustibles sostenibles ($\text{SAF}$) y el desarrollo de propulsión eléctrica/híbrida para vuelos de corto alcance.</li>
-                               <li>Movilidad Aérea Urbana ($\text{UAM}$): Desarrollo de $\text{eVTOLs}$ (taxis aéreos eléctricos).</li>
-                               <li>Vuelo Hipersónico: Proyectos que buscan alcanzar velocidades superiores a Mach 5.</li>
-                               <li>Automatización y $\text{AI}$: Integración de Inteligencia Artificial para optimización de rutas y mantenimiento predictivo.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-        </div>
+<body class="min-h-screen">
+  <!-- Hero/top image -->
+  <header class="relative">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Airbus_A350-941_%28F-WWCF%29_%2826694978941%29.jpg/1280px-Airbus_A350-941_%28F-WWCF%29_%2826694978941%29.jpg" alt="Avión comercial moderno en vuelo" class="w-full h-64 sm:h-80 md:h-96 object-cover" />
+    <div class="absolute inset-0 bg-black/40"></div>
+    <div class="absolute inset-0 flex items-center justify-center">
+      <h1 class="text-3xl md:text-5xl font-bold era-title text-white text-center px-4">Historia Interactiva de la Aviación</h1>
     </div>
+  </header>
 
-    <footer class="text-center mt-12 py-8 border-t border-gray-800 text-gray-500">
-        <p>Una exploración interactiva basada en la historia de la aviación.</p>
-    </footer>
+  <main class="max-w-6xl mx-auto px-4 py-8 space-y-12">
+    <!-- Resumen/intro -->
+    <section class="space-y-4">
+      <h2 class="text-2xl md:text-3xl font-bold text-amber-400">Introducción</h2>
+      <p>Este informe recorre los hitos de la aviación, desde los primeros vuelos hasta los aviones de última generación.</p>
+    </section>
 
-    <script>
-        const START_YEAR = 1903;
-        // Obtenemos el año actual de forma dinámica
-        const CURRENT_YEAR = new Date().getFullYear();
-        const TOTAL_YEARS = CURRENT_YEAR - START_YEAR;
+    <!-- Gráfico de velocidades (si ya existía en tu documento) -->
+    <section class="space-y-6">
+      <h2 class="text-2xl md:text-3xl font-bold text-amber-400">Velocidad a través del tiempo</h2>
+      <div class="chart-container"><canvas id="speedChart"></canvas></div>
+    </section>
 
-        function animateCounter(targetId, endValue) {
-            const element = document.getElementById(targetId);
-            let start = 0;
-            const duration = 2000;
-            let startTime = null;
+    <!-- Sección de aviones modernos con imagen requerida -->
+    <section id="aviones-modernos" class="space-y-4">
+      <h2 class="text-2xl md:text-3xl font-bold text-amber-400">Aviones modernos</h2>
+      <p>Los aviones modernos combinan eficiencia, materiales compuestos y aerodinámica avanzada.</p>
+      <figure class="rounded-lg overflow-hidden border border-gray-700">
+        <img src="https://images.unsplash.com/photo-1501554728187-ce583db33af7?q=80&w=1600&auto=format&fit=crop" alt="Cabina y fuselaje de avión moderno" class="w-full h-72 object-cover" />
+        <figcaption class="text-sm text-gray-300 p-3">Foto: Unsplash (uso permitido).</figcaption>
+      </figure>
+    </section>
 
-            function step(timestamp) {
-                if (!startTime) startTime = timestamp;
-                const progress = timestamp - startTime;
-                const percentage = Math.min(progress / duration, 1);
-                const currentValue = Math.floor(percentage * endValue);
-                element.textContent = currentValue;
+    <!-- Línea de tiempo simple de ejemplo (placeholder) -->
+    <section class="space-y-6">
+      <h2 class="text-2xl md:text-3xl font-bold text-amber-400">Hitos históricos</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        <article class="relative p-5 rounded-lg timeline-item-card">
+          <h3 class="font-bold text-lg">1903 - Wright Flyer</h3>
+          <p>Primer vuelo controlado y sostenido de una aeronave más pesada que el aire.</p>
+        </article>
+        <article class="relative p-5 rounded-lg timeline-item-card">
+          <h3 class="font-bold text-lg">1976 - Concorde</h3>
+          <p>Ícono del vuelo supersónico comercial, marcando récords de velocidad.</p>
+        </article>
+      </div>
+    </section>
+  </main>
 
-                if (percentage < 1) {
-                    window.requestAnimationFrame(step);
-                } else {
-                    // El signo "+" fue eliminado en la solicitud anterior
-                    element.textContent = endValue; 
-                }
-            }
-            window.requestAnimationFrame(step);
-        }
+  <footer class="text-center text-xs text-gray-400 py-8">Fuente de imágenes: Wikimedia Commons y Unsplash.</footer>
 
-        function setupLessonToggles() {
-            document.querySelectorAll('.lesson-card').forEach(card => {
-                card.addEventListener('click', () => {
-                    const lessonId = card.getAttribute('data-lesson-id');
-                    const content = document.getElementById(lessonId + '-content');
-                    const icon = card.querySelector('span:last-child');
-                    
-                    // Toggle visibility
-                    const isExpanded = content.classList.contains('expanded');
-                    
-                    if (isExpanded) {
-                        content.classList.remove('expanded');
-                        icon.textContent = '+';
-                        icon.style.transform = 'rotate(0deg)';
-                    } else {
-                        // Cierra otros si están abiertos (opcional para un mejor UX)
-                        document.querySelectorAll('.lesson-content.expanded').forEach(openContent => {
-                            openContent.classList.remove('expanded');
-                            openContent.closest('.lesson-card').querySelector('span:last-child').textContent = '+';
-                            openContent.closest('.lesson-card').querySelector('span:last-child').style.transform = 'rotate(0deg)';
-                        });
-
-                        content.classList.add('expanded');
-                        icon.textContent = '−';
-                        icon.style.transform = 'rotate(180deg)';
-                    }
-                });
-            });
-        }
-        
-        function setupTabSwitching() {
-            const buttons = document.querySelectorAll('.tab-button');
-            const contents = document.querySelectorAll('.tab-content');
-
-            buttons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const targetTab = button.getAttribute('data-tab');
-
-                    // Desactivar todos los botones y ocultar el contenido
-                    buttons.forEach(btn => btn.classList.remove('active'));
-                    contents.forEach(content => content.classList.add('hidden'));
-
-                    // Activar el botón clicado y mostrar el contenido
-                    button.classList.add('active');
-                    document.getElementById('tab-' + targetTab).classList.remove('hidden');
-                });
-            });
-        }
-
-
-        function setupTimelineAnimations() {
-            // Asegura que todas las animaciones se ejecuten en secuencia
-            const timelineItems = document.querySelectorAll('.timeline-item');
-            timelineItems.forEach((item, index) => {
-                item.style.animationDelay = `${0.2 * (index + 1)}s`;
-                item.classList.add('opacity-100');
-            });
-        }
-
-
-        document.addEventListener('DOMContentLoaded', () => {
-            // 1. Chart Initialization
-            const ctx = document.getElementById('speedChart').getContext('2d');
-            const speedChart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: ['Wright Flyer (1903)', 'Spitfire (1938)', 'Boeing 707 (1958)', 'Concorde (1976)'],
-                    datasets: [{
-                        label: 'Velocidad Máxima (km/h)',
-                        data: [109, 594, 1010, 2179],
-                        backgroundColor: 'rgba(245, 158, 11, 0.4)',
-                        borderColor: 'rgba(245, 158, 11, 1)',
-                        borderWidth: 3,
-                        pointBackgroundColor: '#f59e0b',
-                        tension: 0.3
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            ticks: {
-                                color: '#d1d5db'
-                            },
-                             grid: {
-                                color: 'rgba(209, 213, 219, 0.1)'
-                            }
-                        },
-                        x: {
-                             ticks: {
-                                color: '#d1d5db'
-                            }
-                        }
-                    },
-                    plugins: {
-                        legend: {
-                            labels: {
-                                color: '#d1d5db'
-                            }
-                        }
-                    }
-                }
-            });
-
-            // 2. Dynamic Counter
-            animateCounter('year-counter', TOTAL_YEARS);
-
-            // 3. Lesson Toggles (Effects for expanding content)
-            setupLessonToggles();
-            
-            // 4. Tab Switching functionality
-            setupTabSwitching();
-
-            // 5. Timeline Animations
-            setupTimelineAnimations();
+  <script>
+    // Datos de ejemplo del gráfico (si tu archivo ya tenía lógica, puedes fusionarla aquí)
+    document.addEventListener('DOMContentLoaded', () => {
+      const ctx = document.getElementById('speedChart');
+      if (ctx) {
+        const chart = new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: ['Wright Flyer (1903)', 'Spitfire (1938)', 'Boeing 707 (1958)', 'Concorde (1976)'],
+            datasets: [{
+              label: 'Velocidad Máxima (km/h)',
+              data: [109, 594, 1010, 2179],
+              backgroundColor: 'rgba(245, 158, 11, 0.4)',
+              borderColor: 'rgba(245, 158, 11, 1)',
+              borderWidth: 3,
+              pointBackgroundColor: '#f59e0b',
+              tension: 0.3
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+              y: { beginAtZero: true, ticks: { color: '#d1d5db' }, grid: { color: 'rgba(209,213,219,0.1)' } },
+              x: { ticks: { color: '#d1d5db' } }
+            },
+            plugins: { legend: { labels: { color: '#d1d5db' } } }
+          }
         });
-    </script>
+      }
+    });
+  </script>
 </body>
 </html>
