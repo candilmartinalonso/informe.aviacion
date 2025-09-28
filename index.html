@@ -9,142 +9,239 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&family=Oswald:wght@500&display=swap" rel="stylesheet" />
   <style>
     body { font-family: 'Roboto Condensed', sans-serif; background-color: #0d121c; color: #d1d5db; }
-    .timeline-item-card { transition: transform 0.3s ease, box-shadow 0.3s ease; background-color: #1f2937; border: 1px solid #374151; }
-    .timeline-item-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.6); border-color: #f59e0b; }
-    .timeline-item::before { content: ''; position: absolute; width: 20px; height: 20px; border-radius: 50%; background-color: #f59e0b; border: 4px solid #374151; top: 20px; left: -10px; z-index: 1; transition: all 0.3s; }
-    .timeline-item:hover::before { transform: scale(1.2); }
-    .era-title { font-family: 'Oswald', sans-serif; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
-    .lesson-card { background-color: #2c3847; border-left: 4px solid #f59e0b; transition: all 0.3s ease; cursor: pointer; }
-    .lesson-card:hover { background-color: #3e4b5a; }
-    .chart-container { position: relative; width: 100%; max-width: 720px; height: 380px; }
+    .hero-img { animation: fadeIn 2.5s ease; }
+    .timeline-item-card, .lesson-card { transition: transform 0.3s ease, box-shadow 0.3s ease; background-color: #1f2937; border: 1px solid #374151; }
+    .timeline-item-card:hover { transform: translateY(-8px) scale(1.04); box-shadow: 0 20px 40px rgba(0,0,0,0.65); border-color: #f59e0b; }
+    .timeline-item-card img { border-radius: 0.5rem; box-shadow: 0 4px 16px rgba(0,0,0,0.3); margin-bottom: 12px; }
+    .era-title { font-family: 'Oswald', sans-serif; text-shadow: 2px 2px 16px rgba(0,0,0,0.7); animation: textRise 2s cubic-bezier(0.2,1,0.3,1);}
+    .lesson-card { background: linear-gradient(90deg,#2c3847 70%,#f59e0b22 100%); border-left: 5px solid #f59e0b; cursor: pointer; }
+    .lesson-card:hover { background-color: #3e4b5a; box-shadow: 0 8px 28px #f59e0b33; transform: scale(1.03);}
+    .chart-container { position: relative; width: 100%; max-width: 780px; height: 400px; }
+    .img-gallery { display: flex; gap: 1.2rem; overflow-x: auto; margin-top: 0.7rem; padding-bottom:1rem;}
+    .img-gallery img { border-radius: 0.5rem; height: 120px; object-fit: cover; box-shadow:0 3px 12px rgba(0,0,0,0.55); opacity: 0.95; transition: transform 0.3s; border:2px solid #374151;}
+    .img-gallery img:hover { transform: scale(1.07) rotate(-2deg); border-color:#f59e0b; opacity:1;}
+    @keyframes fadeIn {0%{opacity:0;transform:scale(1.03);} 100%{opacity:1;transform:scale(1);}}
+    @keyframes textRise {0%{transform:translateY(30px); opacity:0;} 100%{transform:translateY(0); opacity:1;}}
+    /* Animación para la línea de tiempo */
+    .timeline-anim { animation: timelineFadeIn 1.6s cubic-bezier(0.48,0.16,0.1,1); }
+    @keyframes timelineFadeIn {0%{opacity:0;transform:translateX(-35px);} 100%{opacity:1;transform:translateX(0);}}
   </style>
 </head>
 <body class="min-h-screen">
-  <!-- Hero/top image -->
+  <!-- Hero/top image & título animado -->
   <header class="relative">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Airbus_A350-941_%28F-WWCF%29_%2826694978941%29.jpg/1280px-Airbus_A350-941_%28F-WWCF%29_%2826694978941%29.jpg" alt="Avión comercial moderno en vuelo" class="w-full h-64 sm:h-80 md:h-96 object-cover" />
+    <img src="https://upload.wikimedia.org/wikipedia/commons/1/19/Airbus_A350-941_%28F-WWCF%29_%2826694978941%29.jpg" alt="Avión comercial moderno" class="w-full h-64 sm:h-80 md:h-96 object-cover hero-img" />
     <div class="absolute inset-0 bg-black/40"></div>
     <div class="absolute inset-0 flex items-center justify-center">
       <h1 class="text-3xl md:text-5xl font-bold era-title text-white text-center px-4">Historia Interactiva de la Aviación</h1>
     </div>
   </header>
 
-  <main class="max-w-6xl mx-auto px-4 py-8 space-y-12">
-    <!-- Resumen/intro -->
+  <main class="max-w-6xl mx-auto px-4 py-12 space-y-14">
+
+    <!-- Introducción animada -->
     <section class="space-y-4">
       <h2 class="text-2xl md:text-3xl font-bold text-amber-400">Introducción</h2>
-      <p>Este informe recorre los hitos de la aviación, desde los primeros vuelos hasta los aviones de última generación, haciendo foco en avances técnicos, históricos y tendencias futuras.</p>
+      <p class="animate-fadeIn">De los sueños de Ícaro a los aviones hipermodernos, explora los inventos, pioneros y avances que transformaron cómo viajamos por los cielos.</p>
+      <div class="img-gallery">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/Wrightflyer.jpg" alt="Wright Flyer" title="Wright Flyer (1903)">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Spirit_of_St._Louis.jpg" alt="Spirit of St. Louis" title="Spirit of St. Louis">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/2/22/Concorde_1987.jpg" alt="Concorde" title="Concorde">
+        <img src="https://images.unsplash.com/photo-1466017441595-1e31b5f72bab?q=80&w=1600&auto=format&fit=crop" alt="Piloto moderno" title="Piloto moderno">
+      </div>
     </section>
 
-    <!-- Gráfico de velocidades -->
+    <!-- Gráfico de velocidades ampliado -->
     <section class="space-y-6">
       <h2 class="text-2xl md:text-3xl font-bold text-amber-400">Velocidad a través del tiempo</h2>
       <div class="chart-container"><canvas id="speedChart"></canvas></div>
       <div class="overflow-x-auto">
-        <table class="min-w-full text-left text-gray-300 bg-gray-800 rounded-lg mt-6">
+        <table class="min-w-full text-left text-gray-300 bg-gray-800 rounded-lg mt-7 shadow-md">
           <thead>
             <tr class="bg-gray-700">
               <th class="py-2 px-3">Avión</th>
               <th class="py-2 px-3">Año</th>
-              <th class="py-2 px-3">Vel. máx (km/h)</th>
+              <th class="py-2 px-3">Tipo</th>
+              <th class="py-2 px-3">Velocidad máx (km/h)</th>
+              <th class="py-2 px-3">Imagen</th>
             </tr>
           </thead>
           <tbody>
-            <tr><td class="py-2 px-3">Wright Flyer</td><td class="py-2 px-3">1903</td><td class="py-2 px-3">109</td></tr>
-            <tr><td class="py-2 px-3">Blériot XI</td><td class="py-2 px-3">1909</td><td class="py-2 px-3">75</td></tr>
-            <tr><td class="py-2 px-3">Spirit of St. Louis</td><td class="py-2 px-3">1927</td><td class="py-2 px-3">222</td></tr>
-            <tr><td class="py-2 px-3">DC-3</td><td class="py-2 px-3">1935</td><td class="py-2 px-3">333</td></tr>
-            <tr><td class="py-2 px-3">Spitfire</td><td class="py-2 px-3">1938</td><td class="py-2 px-3">594</td></tr>
-            <tr><td class="py-2 px-3">Heinkel He 178</td><td class="py-2 px-3">1939</td><td class="py-2 px-3">700</td></tr>
-            <tr><td class="py-2 px-3">Boeing 707</td><td class="py-2 px-3">1958</td><td class="py-2 px-3">1010</td></tr>
-            <tr><td class="py-2 px-3">Concorde</td><td class="py-2 px-3">1976</td><td class="py-2 px-3">2179</td></tr>
-            <tr><td class="py-2 px-3">Airbus A380</td><td class="py-2 px-3">2005</td><td class="py-2 px-3">1020</td></tr>
-            <tr><td class="py-2 px-3">Boeing 787</td><td class="py-2 px-3">2011</td><td class="py-2 px-3">954</td></tr>
+            <tr class="hover:bg-gray-900 transition">
+              <td class="py-2 px-3">Wright Flyer</td>
+              <td class="py-2 px-3">1903</td>
+              <td class="py-2 px-3">Pionero</td>
+              <td class="py-2 px-3">109</td>
+              <td class="py-2 px-3"><img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/Wrightflyer.jpg" width="50" alt="Wright Flyer" /></td>
+            </tr>
+            <tr class="hover:bg-gray-900 transition">
+              <td class="py-2 px-3">Blériot XI</td>
+              <td class="py-2 px-3">1909</td>
+              <td class="py-2 px-3">Monoplano</td>
+              <td class="py-2 px-3">75</td>
+              <td class="py-2 px-3"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Bl%C3%A9riot_Monoplane_1909.jpg" width="50" alt="Blériot XI" /></td>
+            </tr>
+            <tr class="hover:bg-gray-900 transition">
+              <td class="py-2 px-3">Spirit of St. Louis</td>
+              <td class="py-2 px-3">1927</td>
+              <td class="py-2 px-3">Travesía</td>
+              <td class="py-2 px-3">222</td>
+              <td class="py-2 px-3"><img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Spirit_of_St._Louis.jpg" width="50" alt="Spirit of St. Louis" /></td>
+            </tr>
+            <tr class="hover:bg-gray-900 transition">
+              <td class="py-2 px-3">DC-3</td>
+              <td class="py-2 px-3">1935</td>
+              <td class="py-2 px-3">Comercial</td>
+              <td class="py-2 px-3">333</td>
+              <td class="py-2 px-3"><img src="https://upload.wikimedia.org/wikipedia/commons/2/25/Douglas_DC-3_N18124_FAG_1.JPG" width="50" alt="DC-3" /></td>
+            </tr>
+            <tr class="hover:bg-gray-900 transition">
+              <td class="py-2 px-3">Spitfire</td>
+              <td class="py-2 px-3">1938</td>
+              <td class="py-2 px-3">Caza</td>
+              <td class="py-2 px-3">594</td>
+              <td class="py-2 px-3"><img src="https://upload.wikimedia.org/wikipedia/commons/7/74/Supermarine_Spitfire_Mk_XI.jpg" width="50" alt="Spitfire" /></td>
+            </tr>
+            <tr class="hover:bg-gray-900 transition">
+              <td class="py-2 px-3">Heinkel He 178</td>
+              <td class="py-2 px-3">1939</td>
+              <td class="py-2 px-3">Jet</td>
+              <td class="py-2 px-3">700</td>
+              <td class="py-2 px-3"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a2/Heinkel_He_178.jpg" width="50" alt="Heinkel He 178" /></td>
+            </tr>
+            <tr class="hover:bg-gray-900 transition">
+              <td class="py-2 px-3">Boeing 707</td>
+              <td class="py-2 px-3">1958</td>
+              <td class="py-2 px-3">Jet comercial</td>
+              <td class="py-2 px-3">1010</td>
+              <td class="py-2 px-3"><img src="https://upload.wikimedia.org/wikipedia/commons/7/7d/Boeing_707-430_Lufthansa_D-ABOC.jpg" width="50" alt="Boeing 707" /></td>
+            </tr>
+            <tr class="hover:bg-gray-900 transition">
+              <td class="py-2 px-3">Concorde</td>
+              <td class="py-2 px-3">1976</td>
+              <td class="py-2 px-3">Supersónico</td>
+              <td class="py-2 px-3">2179</td>
+              <td class="py-2 px-3"><img src="https://upload.wikimedia.org/wikipedia/commons/2/22/Concorde_1987.jpg" width="50" alt="Concorde" /></td>
+            </tr>
+            <tr class="hover:bg-gray-900 transition">
+              <td class="py-2 px-3">Airbus A380</td>
+              <td class="py-2 px-3">2005</td>
+              <td class="py-2 px-3">Gigante</td>
+              <td class="py-2 px-3">1020</td>
+              <td class="py-2 px-3"><img src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Airbus_A380_first_flight_with_passengers_-_cropped.jpg" width="50" alt="A380" /></td>
+            </tr>
+            <tr class="hover:bg-gray-900 transition">
+              <td class="py-2 px-3">Boeing 787</td>
+              <td class="py-2 px-3">2011</td>
+              <td class="py-2 px-3">Avanzado</td>
+              <td class="py-2 px-3">954</td>
+              <td class="py-2 px-3"><img src="https://upload.wikimedia.org/wikipedia/commons/7/74/Boeing_787_Dreamliner_at_Paris_Air_Show_2009.jpg" width="50" alt="Boeing 787" /></td>
+            </tr>
           </tbody>
         </table>
       </div>
     </section>
 
-    <!-- Sección de aviones modernos con imagen -->
-    <section id="aviones-modernos" class="space-y-4">
+    <!-- Aviones modernos con galería e info -->
+    <section id="aviones-modernos" class="space-y-5">
       <h2 class="text-2xl md:text-3xl font-bold text-amber-400">Aviones modernos</h2>
-      <p>
-        Los aviones actuales integran <b>materiales compuestos</b>, motores eficientes y aerodinámica avanzada.<br />
-        Ejemplos destacados:
-        <ul class="list-disc ml-6 mt-2">
-          <li>Airbus A350 XWB: eficiencia, bajo consumo, diseño avanzado</li>
-          <li>Boeing 787 Dreamliner: fuselaje compuesto, tecnología digital</li>
-          <li>Embraer E2: optimización regional y consumo</li>
-          <li>Cessna SkyCourier: logística versátil</li>
+      <div class="flex flex-col md:flex-row md:items-center gap-5">
+        <figure class="rounded-lg overflow-hidden border border-gray-700 md:w-1/3 shadow-lg anim-fadeIn">
+          <img src="https://images.unsplash.com/photo-1501554728187-ce583db33af7?q=80&w=1600&auto=format&fit=crop" alt="Cabina moderna" class="object-cover w-full h-72 transition duration-500 hover:scale-105" />
+          <figcaption class="text-sm text-gray-300 p-3">Cabina de avión moderno, foto Unsplash.</figcaption>
+        </figure>
+        <ul class="flex-1 space-y-4 text-base">
+          <li class="lesson-card timeline-anim">Airbus A350 XWB: <span>Eficiencia, bajo consumo, diseño ultramoderno y sistemas 'fly-by-wire'.</span></li>
+          <li class="lesson-card timeline-anim">Boeing 787 Dreamliner: <span>Estructura de composite, grandes ventanas y menor presión en cabina.</span></li>
+          <li class="lesson-card timeline-anim">Embraer E2: <span>Tecnología regional y motores de última generación.</span></li>
+          <li class="lesson-card timeline-anim">Cessna SkyCourier: <span>Versatilidad en carga y pasajeros.</span></li>
         </ul>
-      </p>
-      <figure class="rounded-lg overflow-hidden border border-gray-700">
-        <img src="https://images.unsplash.com/photo-1501554728187-ce583db33af7?q=80&w=1600&auto=format&fit=crop" alt="Cabina y fuselaje de avión moderno" class="w-full h-72 object-cover" />
-        <figcaption class="text-sm text-gray-300 p-3">Foto: Unsplash (uso permitido).</figcaption>
-      </figure>
+      </div>
+      <div class="img-gallery">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/1/19/Airbus_A350-941_%28F-WWCF%29_%2826694978941%29.jpg" alt="A350" title="A350 XWB">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/7/74/Boeing_787_Dreamliner_at_Paris_Air_Show_2009.jpg" alt="Boeing 787" title="Boeing 787 Dreamliner">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/7/7d/Embraer_E190-E2_MSN_19020008_KLX_%282-25%29.jpg" alt="Embraer E2" title="Embraer E2">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/8/8c/Cessna_408_SkyCourier_N408SK.jpg" alt="Cessna" title="Cessna SkyCourier">
+      </div>
     </section>
 
-    <!-- Línea de tiempo extendida -->
+    <!-- Línea de tiempo animada e ilustrada -->
     <section class="space-y-6">
       <h2 class="text-2xl md:text-3xl font-bold text-amber-400">Hitos históricos</h2>
-      <div class="grid md:grid-cols-2 gap-6">
-        <article class="relative p-5 rounded-lg timeline-item-card">
+      <div class="grid md:grid-cols-2 gap-7">
+        <article class="timeline-item-card p-5 timeline-anim">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/Wrightflyer.jpg" alt="Wright Flyer" class="w-full mb-1">
           <h3 class="font-bold text-lg">1903 - Wright Flyer</h3>
-          <p>Primer vuelo controlado y sostenido de una aeronave más pesada que el aire.</p>
+          <p>Primer vuelo sostenido de una aeronave más pesada que el aire.</p>
         </article>
-        <article class="relative p-5 rounded-lg timeline-item-card">
-          <h3 class="font-bold text-lg">1914 - Primer vuelo comercial</h3>
-          <p>Inicio de la aviación comercial en Florida, EE.UU.</p>
+        <article class="timeline-item-card p-5 timeline-anim">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Bl%C3%A9riot_Monoplane_1909.jpg" alt="Blériot XI" class="w-full mb-1">
+          <h3 class="font-bold text-lg">1909 - Blériot XI</h3>
+          <p>Primer cruce del Canal de la Mancha en avión por Louis Blériot.</p>
         </article>
-        <article class="relative p-5 rounded-lg timeline-item-card">
-          <h3 class="font-bold text-lg">1939 - Heinkel He 178</h3>
-          <p>Primer avión a reacción de la historia, precursor de la aviación moderna.</p>
+        <article class="timeline-item-card p-5 timeline-anim">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Spirit_of_St._Louis.jpg" alt="Spirit of St. Louis" class="w-full mb-1">
+          <h3 class="font-bold text-lg">1927 - Spirit of St. Louis</h3>
+          <p>Lindbergh cruza el Atlántico en solitario, abriendo la era de la aviación comercial.</p>
         </article>
-        <article class="relative p-5 rounded-lg timeline-item-card">
-          <h3 class="font-bold text-lg">1952 - De Havilland Comet</h3>
-          <p>Primer reactor comercial, inicia la era del jet.</p>
-        </article>
-        <article class="relative p-5 rounded-lg timeline-item-card">
+        <article class="timeline-item-card p-5 timeline-anim">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/2/22/Concorde_1987.jpg" alt="Concorde" class="w-full mb-1">
           <h3 class="font-bold text-lg">1976 - Concorde</h3>
-          <p>Ícono del vuelo supersónico comercial, marcando récords de velocidad.</p>
+          <p>Vuelo comercial supersónico, récord mundial de velocidad para pasajeros.</p>
         </article>
-        <article class="relative p-5 rounded-lg timeline-item-card">
+        <article class="timeline-item-card p-5 timeline-anim">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Airbus_A380_first_flight_with_passengers_-_cropped.jpg" alt="Airbus A380" class="w-full mb-1">
           <h3 class="font-bold text-lg">2005 - Airbus A380</h3>
-          <p>Avión comercial más grande del mundo.</p>
+          <p>Mayor avión de pasajeros del mundo, doble cubierta, lujo y capacidad.</p>
         </article>
-        <article class="relative p-5 rounded-lg timeline-item-card">
+        <article class="timeline-item-card p-5 timeline-anim">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/7/74/Boeing_787_Dreamliner_at_Paris_Air_Show_2009.jpg" alt="Boeing 787" class="w-full mb-1">
           <h3 class="font-bold text-lg">2011 - Boeing 787 Dreamliner</h3>
-          <p>Avance en eficiencia y confort con fuselaje de materiales compuestos.</p>
-        </article>
-        <article class="relative p-5 rounded-lg timeline-item-card">
-          <h3 class="font-bold text-lg">2019 - Boeing 777X</h3>
-          <p>Ala plegable y motores ultraeficientes.</p>
+          <p>Revolución en confort y consumo, composite y automatización.</p>
         </article>
       </div>
     </section>
 
-    <!-- Sección de innovación y futuro -->
+    <!-- Innovación y futuro con animación, íconos -->
     <section class="space-y-4">
       <h2 class="text-2xl md:text-3xl font-bold text-amber-400">Innovación y futuro</h2>
-      <div class="lesson-card p-4 mb-2">
-        <b>Sostenibilidad:</b> Avances en combustibles sostenibles (SAF), investigaciones sobre hidrógeno y aviación eléctrica.
-      </div>
-      <div class="lesson-card p-4 mb-2">
-        <b>Automatización:</b> Cabinas digitalizadas, conectividad total y potencial para vuelos autónomos.
-      </div>
-      <div class="lesson-card p-4 mb-2">
-        <b>Reducir emisiones:</b> Motores más eficientes, diseño optimizado y materiales ligeros para disminuir la huella de carbono.
-      </div>
-      <div class="lesson-card p-4 mb-2">
-        <b>Aviación eléctrica:</b> Prototipos como Eviation Alice y proyectos Airbus ZEROe marcan el rumbo de los próximos años.
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="lesson-card p-4 flex items-center timeline-anim">
+          <img src="https://cdn-icons-png.flaticon.com/512/1017/1017534.png" width="36" class="mr-3" alt="Sostenible">
+          <div>
+            <b>Sostenibilidad:</b> Motores eficientes, combustibles alternativos (SAF, hidrógeno), reducción de emisiones.
+            <p class="text-amber-300 text-xs mt-1">Ej: ZEROe de Airbus, proyectos eléctricos y híbridos.</p>
+          </div>
+        </div>
+        <div class="lesson-card p-4 flex items-center timeline-anim">
+          <img src="https://cdn-icons-png.flaticon.com/512/739/739162.png" width="36" class="mr-3" alt="Automatización">
+          <div>
+            <b>Automatización:</b> Cabinas digitalizadas, sistemas fly-by-wire, integración de IA en mantenimiento.
+            <p class="text-amber-300 text-xs mt-1">Ejemplo: Boeing 777X y aviones autónomos experimentales.</p>
+          </div>
+        </div>
+        <div class="lesson-card p-4 flex items-center timeline-anim">
+          <img src="https://cdn-icons-png.flaticon.com/512/271/271187.png" width="36" class="mr-3" alt="Innovación material">
+          <div>
+            <b>Materiales avanzados:</b> Uso intensivo de composites, impresiones 3D en piezas y aerodinámica optimizada.
+            <p class="text-amber-300 text-xs mt-1">Aplicado en A350, B787, aviones ligeros y drones.</p>
+          </div>
+        </div>
+        <div class="lesson-card p-4 flex items-center timeline-anim">
+          <img src="https://cdn-icons-png.flaticon.com/512/2933/2933985.png" width="36" class="mr-3" alt="Ruta próxima">
+          <div>
+            <b>Aviación del futuro:</b> Propuestas de aviones hipersónicos, taxis aéreos, drones autónomos y movilidad urbana aérea.
+            <p class="text-amber-300 text-xs mt-1">Startup Eviation Alice, Joby Aviation, Volocopter.</p>
+          </div>
+        </div>
       </div>
     </section>
   </main>
 
-  <footer class="text-center text-xs text-gray-400 py-8">Fuente de imágenes: Wikimedia Commons y Unsplash. Elaborado con ayuda de Air and Space Museum, Airbus, Boeing y Embraer.</footer>
+  <footer class="text-center text-xs text-gray-400 py-8">Imágenes de Wikimedia Commons, Unsplash y Flaticon. Info de Air and Space Museum, Airbus, Boeing, Embraer y Wikipedia.</footer>
 
   <script>
-    // Gráfico extendido
+    // Animacion chart
     document.addEventListener('DOMContentLoaded', () => {
       const ctx = document.getElementById('speedChart');
       if (ctx) {
@@ -152,35 +249,34 @@
           type: 'line',
           data: {
             labels: [
-              'Wright Flyer (1903)',
-              'Blériot XI (1909)',
-              'Spirit of St. Louis (1927)',
-              'DC-3 (1935)',
-              'Spitfire (1938)',
-              'Heinkel He 178 (1939)',
-              'Boeing 707 (1958)',
-              'Concorde (1976)',
-              'Airbus A380 (2005)',
-              'Boeing 787 (2011)'
+              'Wright Flyer (1903)', 'Blériot XI (1909)', 'Spirit of St. Louis (1927)', 'DC-3 (1935)', 'Spitfire (1938)', 'Heinkel He 178 (1939)', 'Boeing 707 (1958)', 'Concorde (1976)', 'Airbus A380 (2005)', 'Boeing 787 (2011)'
             ],
             datasets: [{
               label: 'Velocidad Máxima (km/h)',
               data: [109, 75, 222, 333, 594, 700, 1010, 2179, 1020, 954],
-              backgroundColor: 'rgba(245, 158, 11, 0.4)',
-              borderColor: 'rgba(245, 158, 11, 1)',
-              borderWidth: 3,
-              pointBackgroundColor: '#f59e0b',
-              tension: 0.3
+              backgroundColor: 'rgba(245,158,11,0.14)',
+              borderColor: 'rgba(245,158,11,1)',
+              borderWidth: 4,
+              pointBackgroundColor:'#f59e0b',
+              pointRadius: 8,
+              pointHoverRadius: 13,
+              pointBorderColor:'#f59e0b',
+              pointStyle:'circle',
+              tension: .33
             }]
           },
           options: {
             responsive: true,
+            animation: {duration:2000,easing:"easeInOutQuart"},
             maintainAspectRatio: false,
             scales: {
-              y: { beginAtZero: true, ticks: { color: '#d1d5db' }, grid: { color: 'rgba(209,213,219,0.1)' } },
-              x: { ticks: { color: '#d1d5db' } }
+              y: { beginAtZero: true, ticks: { color: '#d1d5db' }, grid: { color: 'rgba(209,213,219,0.1)' }},
+              x: { ticks: { color: '#d1d5db' }, grid:{display:false}}
             },
-            plugins: { legend: { labels: { color: '#d1d5db' } } }
+            plugins: {
+              legend: { labels: { color: '#d1d5db', font:{size:16} } },
+              tooltip: { enabled:true, animation:{duration:900}, callbacks:{label:(tt)=>`${tt.dataset.label}: ${tt.parsed.y} km/h`} }
+            }
           }
         });
       }
